@@ -1,10 +1,13 @@
 package sample;
 
+import Connectvy.ConnectionClass;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,12 +99,27 @@ public class Controller_AddMO implements Initializable{
     private void M_Btn_Save_AddMo(ActionEvent event) {
     }
 
+    ConnectionClass connectionClass = new ConnectionClass();
+    //Connection connection;
     @FXML
-    private void M_Btn_Search_AddMo(ActionEvent event) {
+    private void M_Btn_Search_AddMo(ActionEvent event) throws SQLException {
+        
+                     
+   
+        
+  Connection connection = connectionClass.getConnection();
+       // String sql ="INSERT INTO \"azoz\".\"dbo\".\"user\" (\"name\") VALUES('"+textbox.getText()+"')";
+        String sql ="INSERT INTO user VALUES('"+"hhhhhhhh"+"')";
+       java.sql.Statement statement1 = connection.createStatement();
+        statement1.executeUpdate(sql);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+          //ConnectionClass connectionClass = new ConnectionClass();
+    // we call conneClass  that we make it up
+    Connection connection = connectionClass.getConnection();
         System.out.println("Byee");    }
 
   

@@ -5,10 +5,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -17,13 +21,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Controller_AddMO implements Initializable {
 
@@ -249,13 +258,44 @@ public class Controller_AddMO implements Initializable {
         //Table_SelectedSP_AddMO.getItems().setAll(list2);
         //SPSelected.forEach(AllSP::remove);
     }
+    void loadWindow(String loc , String title){
+        try {
+
+            Parent parent = FXMLLoader.load(getClass().getResource(loc));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setScene(new Scene(parent));
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException s) {
+            s.printStackTrace();
+        }}
+
 
     @FXML
     private void M_Btn_Print_AddMo(ActionEvent event) {
+        loadWindow("/sample/Print_Window.fxml" ,"" );
     }
 
     @FXML
     private void M_Btn_Cancle_AddMo(ActionEvent event) {
+           
+       Txfiled_ProplemDisc_AddMO.clear();
+       Txfiled_CusMnum_AddMO.clear();
+       Txfiled_SPCost_AddMO.clear();
+       Txfiled_MOCost_AddMO.clear();
+       Txfiled_DevSerialN_AddMO.clear();
+       Txfiled_DevDiscription_AddMO.clear();
+       Txfiled_SpSerialN_AddMO.clear();
+       Txfiled_TotalCost_AddMO.clear();
+       Txfiled_VAT_AddMO.clear();
+       Txfiled_MOnum_AddMO.clear();
+       Txfiled_SearchSP_AddMO.clear();
+       Selct_Techichan_AddMO.getSelectionModel().clearSelection();
+       Selct_MoStatus_AddMO.getSelectionModel().clearSelection();
+       Date_Warranty_AddMO.getEditor().clear();
+       Date_StartMo_AddMO.getEditor().clear();
+       Date_EndMO_AddMO.getEditor().clear();
+       
     }
 
     @FXML
@@ -287,13 +327,66 @@ public class Controller_AddMO implements Initializable {
         }
 
     }
+    
 
     @FXML
     private void M_Btn_Search_AddMo(ActionEvent event) throws SQLException {
+         Connection connection = connectionClass.getConnection();
+         Statement st = connection.createStatement();
+               st.executeQuery("select * FROM  maintenance_operation WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText()+ "'");
+              ResultSet rs = st.getResultSet();
+              //st = connection.prepareCall(sql);
+              
+              if(rs.first()){
+                  
+            
+          Txfiled_MOnum_AddMO.setDisable(true);
+            Txfiled_ProplemDisc_AddMO.setText(rs.getString("PROBLEM_DESC"));
+            Txfiled_CusMnum_AddMO.setText(rs.getString("CUS_MOBILE_NBER"));
+            Txfiled_SPCost_AddMO.setText(rs.getString("SP_COST"));
+            Txfiled_MOCost_AddMO.setText(rs.getString("MO_COST"));
+            Txfiled_DevSerialN_AddMO.setText(rs.getString("DEVICE_SN"));
+            Txfiled_DevDiscription_AddMO.setText(rs.getString("DEVICE_DESC"));
+            Date_Warranty_AddMO.getEditor().setText(rs.getString("WARRANTY"));
+            Date_StartMo_AddMO.getEditor().setText(rs.getString("STARTING_DATE"));
+            Date_EndMO_AddMO.getEditor().setText(rs.getString("ENDING_DATE"));
+          List<String> State = new ArrayList<>();
+          State.add(rs.getString("STATE"));
+          Selct_MoStatus_AddMO.setItems(FXCollections.observableArrayList(State));
+          List<String> Tec = new ArrayList<>();
+          Tec.add(rs.getString("EMPLOYEE_ID"));
+          Selct_Techichan_AddMO.setItems(FXCollections.observableArrayList(Tec));
+             Btn_Delete_AddMo.setDisable(false);
+             Btn_Save_AddMo.setDisable(false);
+             Btn_Print_AddMo.setDisable(false);
+             Btn_Delete_AddMo.setDisable(false);
+             Txfiled_CusName_AddMO.setDisable(true);
+             Btn_Cancle_AddMo.setDisable(false);
+             
+      
+              }else
+              {
+                  Txfiled_MOnum_AddMO.setDisable(true);
+                  Txfiled_MOnum_AddMO.clear();
+                  Btn_Delete_AddMo.setDisable(true);
+                  Btn_Cancle_AddMo.setDisable(false);
+                  Btn_Save_AddMo.setDisable(false);
+                  Btn_Print_AddMo.setDisable(false);
+                   Txfiled_CusName_AddMO.setDisable(false);
+                 
+            
+              }
+  
+     
+
+      java.sql.Statement statement1 = connection.createStatement();
+       //statement1.executeQuery(sql);
+
+    }
         
        
 
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

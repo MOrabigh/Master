@@ -33,6 +33,11 @@ public class ConnectionClass {
         String dbName2="azoz";
         String userName2="sa";
         String password2="1418";
+        
+        String dbName3="project";
+        String userName3="root";
+        String password3="";
+
 
 
 

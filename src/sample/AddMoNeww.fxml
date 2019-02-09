@@ -144,10 +144,11 @@
                                        <children>
                                           <TableView fx:id="Table_SelectedSP_AddMO" onMouseClicked="#M_MousClicked_TabelSelecSP_AddMO" prefHeight="271.0" prefWidth="710.0">
                                              <columns>
-                                                <TableColumn fx:id="Col_SPSN_SelectedSP_AddMO" prefWidth="146.0" text="الرقم التسلسلي " />
-                                                <TableColumn fx:id="Col_SPdisc_SelectedSP_AddMO" prefWidth="258.0" text="وصف القطعة" />
-                                                <TableColumn fx:id="Col_SPname_SelectedSP_AddMO" prefWidth="143.0" text="اسم القطعة" />
-                                                <TableColumn fx:id="Col_SPnum_SelectedSP_AddMO" prefWidth="159.0" text="رقم القطعة" />
+                                                <TableColumn fx:id="Col_SPSN_SelectedSP_AddMO" prefWidth="145.0" text="الرقم التسلسلي " />
+                                                <TableColumn fx:id="Col_SPprice_SelectedSP_AddMO" minWidth="0.0" prefWidth="110.0" text="سعر القطعة" />
+                                                <TableColumn fx:id="Col_SPdisc_SelectedSP_AddMO" prefWidth="233.0" text="وصف القطعة" />
+                                                <TableColumn fx:id="Col_SPname_SelectedSP_AddMO" minWidth="0.0" prefWidth="101.0" text="اسم القطعة" />
+                                                <TableColumn fx:id="Col_SPnum_SelectedSP_AddMO" prefWidth="120.0" text="رقم القطعة" />
                                              </columns>
                                           </TableView>
                                        </children>
@@ -156,10 +157,15 @@
                                        <children>
                                           <JFXTextField fx:id="Txfiled_SpSerialN_AddMO" alignment="CENTER" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="الرقم التسلسلي">
                                              <VBox.margin>
-                                                <Insets bottom="10.0" />
+                                                <Insets bottom="15.0" />
                                              </VBox.margin>
                                           </JFXTextField>
-                                          <JFXButton onAction="#M_Btn_ReomveSP_AddMo" stylesheets="@../css/hr.css" text="ازالـة">
+                                          <JFXTextField fx:id="Txfiled_SpPrice_AddMO" alignment="CENTER" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="السعر">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXButton fx:id="Btn_ReomveSP_AddMo" disable="true" onAction="#M_Btn_ReomveSP_AddMo" stylesheets="@../css/hr.css" text="ازالـة">
                                              <graphic>
                                                 <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -168,7 +174,7 @@
                                                 </ImageView>
                                              </graphic>
                                              <VBox.margin>
-                                                <Insets top="10.0" />
+                                                <Insets top="15.0" />
                                              </VBox.margin>
                                           </JFXButton>
                                        </children>
@@ -185,21 +191,22 @@
                                        <children>
                                           <TableView fx:id="Table_AddSP_AddMO" prefHeight="277.0" prefWidth="694.0">
                                              <columns>
-                                                <TableColumn fx:id="Col_SPdisc_AddSP_AddMO" prefWidth="385.0" text="وصف القطعة" />
-                                                <TableColumn fx:id="Col_SPname_AddSP_AddMO" prefWidth="188.0" text="اسم القطعة" />
-                                                <TableColumn fx:id="Col_SPnum_AddSP_AddMO" prefWidth="118.0" text="رقم القطعة" />
+                                                <TableColumn fx:id="Col_SPprice_AddSP_AddMO" prefWidth="152.0" text="سعر القطعة" />
+                                                <TableColumn fx:id="Col_SPdisc_AddSP_AddMO" minWidth="0.0" prefWidth="313.0" text="وصف القطعة" />
+                                                <TableColumn fx:id="Col_SPname_AddSP_AddMO" minWidth="0.0" prefWidth="125.0" text="اسم القطعة" />
+                                                <TableColumn fx:id="Col_SPnum_AddSP_AddMO" prefWidth="100.0" text="رقم القطعة" />
                                              </columns>
                                           </TableView>
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" layoutX="714.0" layoutY="14.0" prefHeight="212.0" prefWidth="113.0">
                                        <children>
-                                          <JFXTextField fx:id="Txfiled_SearchSP_AddMO" alignment="CENTER" onKeyPressed="#Hellllllooo" promptText="بحث">
+                                          <JFXTextField fx:id="Txfiled_SearchSP_AddMO" alignment="CENTER" onKeyPressed="#M_Txfiled_SearchSP_AddMO" promptText="بحث">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="5.0" />
                                              </VBox.margin>
                                           </JFXTextField>
-                                          <JFXButton onAction="#M_Btn_AddSP_AddMo" stylesheets="@../css/hr.css" text="اضافة">
+                                          <JFXButton fx:id="Btn_AddSP_AddMo" disable="true" onAction="#M_Btn_AddSP_AddMo" stylesheets="@../css/hr.css" text="اضافة">
                                              <graphic>
                                                 <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -231,7 +238,7 @@
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_CusMnum_AddMO" alignment="CENTER" labelFloat="true" promptText="هاتف العميل">
+                  <JFXTextField fx:id="Txfiled_CusMnum_AddMO" alignment="CENTER" labelFloat="true" onKeyPressed="#M_Txfiled_CusMnum_AddMO" promptText="هاتف العميل">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>

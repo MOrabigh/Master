@@ -26,7 +26,7 @@ public class ConnectionClass {
         String userName="sql12252436";
         String password="lGryJjY5EN";
 
-        String dbName1="project";
+        String dbName1="MO_DB";
         String userName1="root";
         String password1="";
 

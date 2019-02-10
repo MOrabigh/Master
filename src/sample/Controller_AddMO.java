@@ -187,8 +187,12 @@ public class Controller_AddMO implements Initializable {
             String sqlDeletSP = "DELETE FROM `require` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText() + " AND SP_NBER=" + SPSelected2.get(i).getSP2_Number()
                     + " AND Seq_Nber=" + SPSelected2.get(i).getSP_Seq_Nber();
             System.out.println(sqlDeletSP);
+            //SPSelected2.get(i).ge
+            String sqlupdateSP = "UPDATE `spare_parts` SET `QUANTITY` = QUANTITY+1 WHERE `spare_parts`.`SP_NBRE` ="+SPSelected2.get(i).getSP2_Number();
+            System.out.println(sqlupdateSP);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sqlDeletSP);
+            statement1.executeUpdate(sqlupdateSP);
 
         }
         //}
@@ -304,8 +308,13 @@ public class Controller_AddMO implements Initializable {
             String sql1 = "INSERT INTO `require` VALUES(" + Txfiled_MOnum_AddMO.getText() + ",'" + SPSelected.get(0).getSP_Number() + "','"
                     + seqNumber + "','" + "Null'" + ",'" + SPSelected.get(0).getSP_Price() + "')";
             System.out.println(sql1);
+            
+             String sqlupdateSP = "UPDATE `spare_parts` SET `QUANTITY` = QUANTITY-1 WHERE `spare_parts`.`SP_NBRE` ="+SPSelected.get(0).getSP_Number();
+            System.out.println(sqlupdateSP);
+            
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
+            statement1.executeUpdate(sqlupdateSP);
 
         }
         //}
@@ -414,7 +423,10 @@ public class Controller_AddMO implements Initializable {
         } else if (count == 2) {
             System.out.println("Equal  update");
             System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `maintenance _operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_SPCost_AddMO.getText() + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+            String sql1 = "UPDATE  `maintenance _operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
+                    + "',STARTING_DATE='" + Date_StartMo_AddMO.getValue()+ "',ENDING_DATE='" + Date_EndMO_AddMO.getValue()+ "',WARRANTY='" + Date_Warranty_AddMO.getValue()+ "',PROBLEM_DESC='" + Txfiled_ProplemDisc_AddMO.getText()
+                    + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText()+ "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText()+ "',EMPLOYEE_ID='" +1+ "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
+                    + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);

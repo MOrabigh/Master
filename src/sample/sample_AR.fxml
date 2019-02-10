@@ -290,7 +290,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css" text="ادارة العملاء">
+                                    <Label stylesheets="/css/hr.css">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -568,21 +568,23 @@
                               </JFXButton>
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER" layoutX="254.0" prefHeight="51.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" layoutX="1.0" prefHeight="51.0" prefWidth="1139.0">
                            <children>
-                              <Label stylesheets="/css/hr.css" text="ادارة عمليات الصيانة">
+                              <Separator prefHeight="33.0" prefWidth="1147.0" stylesheets="/css/hr.css">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="30.0" />
+                                 </padding>
+                              </Separator>
+                              <Label stylesheets="/css/hr.css">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox layoutX="254.0" prefHeight="20.0" prefWidth="600.0" />
-                        <Separator layoutX="-2.0" layoutY="46.0" prefHeight="15.0" prefWidth="1126.0" stylesheets="/css/hr.css">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Separator>
                      </children>
                   </AnchorPane>
                </content>
@@ -716,7 +718,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="1.0" layoutY="-3.0" prefHeight="69.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css" text="ادارة قطع الغيار">
+                                    <Label stylesheets="/css/hr.css">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -904,7 +906,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="1.0" layoutY="-1.0" prefHeight="75.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css" text="طلب قطع غيار">
+                                    <Label stylesheets="/css/hr.css">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -1138,7 +1140,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="1.0" layoutY="-2.0" prefHeight="68.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css" text="ادارة المزودين">
+                                    <Label stylesheets="/css/hr.css">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -1327,7 +1329,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutY="9.0" prefHeight="67.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css" text="ادارة الموظفين">
+                                    <Label stylesheets="/css/hr.css">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -1534,7 +1536,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="-1.0" layoutY="8.0" prefHeight="43.0" prefWidth="1120.0">
                            <children>
-                              <Label stylesheets="/css/hr.css" text="التقارير">
+                              <Label stylesheets="/css/hr.css">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -1589,7 +1591,7 @@
                   </HBox>
                </graphic>
             </Tab>
-            <Tab onSelectionChanged="#Mangment_Reports_tab_selected">
+            <Tab onSelectionChanged="#Mangment_Tools_tab_selected">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1121.0">
                      <children>
@@ -1656,7 +1658,7 @@
                         </VBox>
                         <HBox alignment="CENTER" layoutX="271.0" prefHeight="67.0" prefWidth="600.0">
                            <children>
-                              <Label stylesheets="/css/hr.css" text="ادوات">
+                              <Label stylesheets="/css/hr.css">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -1708,14 +1710,14 @@
             <Insets />
          </opaqueInsets>
       </JFXTabPane>
-      <HBox alignment="CENTER_RIGHT" cache="true" prefHeight="56.0" prefWidth="1370.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_RIGHT" cache="true" prefHeight="56.0" prefWidth="1370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="MainLable" alignment="TOP_RIGHT" prefHeight="83.0" prefWidth="443.0">
+            <Label fx:id="MainLable" alignment="CENTER" prefHeight="81.0" prefWidth="526.0">
                <font>
                   <Font size="44.0" />
                </font>
                <HBox.margin>
-                  <Insets right="400.0" />
+                  <Insets right="340.0" />
                </HBox.margin>
             </Label>
             <VBox alignment="CENTER" prefHeight="72.0" prefWidth="249.0" style="-fx-background-color: black;">

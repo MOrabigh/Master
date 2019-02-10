@@ -106,14 +106,11 @@ public class Controller implements Initializable{
 
     @FXML
     private void Btn_AddMO_MangeMO(ActionEvent event) {
-      loadWindow("/sample/AddMoNeww.fxml" ,"" );
+      loadWindow("/sample/AddMo_EN.fxml" ,"" );
 
     }
 
-    @FXML
-    private void Main_Tab(Event event) {
-    }
-
+   
     @FXML
     private void M_Txfiled_MNum_Customer(ActionEvent event) {
     }
@@ -141,10 +138,7 @@ public class Controller implements Initializable{
     private void M_Btn_Search_Customer(ActionEvent event) {
     }
 
-    @FXML
-    private void Mangment_Customer_tab_selected(Event event) {
-    }
-
+  
     @FXML
     private void Btn_Edit_MangeCurrentMO(ActionEvent event) {
     }
@@ -177,9 +171,7 @@ public class Controller implements Initializable{
     private void Txfiled_Search_MangePendingMO(ActionEvent event) {
     }
 
-    @FXML
-    private void Mangment_MO_tab_selected(Event event) {
-    }
+   
 
     @FXML
     private void M_Txfiled_Name_SP(ActionEvent event) {
@@ -197,29 +189,62 @@ public class Controller implements Initializable{
     private void M_Btn_Save_SP(ActionEvent event) {
     }
 
-    @FXML
-    private void Mangment_SpearParts_tab_selected(Event event) {
-    }
-
-    @FXML
-    private void RequstSpearPart_tab_selected(Event event) {
-    }
-
-    @FXML
-    private void Mangment_supliers_tab_selected(Event event) {
-    }
-
-    @FXML
-    private void Mangment_Staff_tab_selected(Event event) {
-    }
-
+    
     @FXML
     private void prbuttonReports(ActionEvent event) {
     }
 
+ 
+
+    
     @FXML
-    private void Mangment_Reports_tab_selected(Event event) {
+    public void Mangment_MO_tab_selected(Event event) {
+
+        MainLable.setText("ادارة عمليات الصيانة");
+
     }
+
+    @FXML
+    public void Mangment_Customer_tab_selected(Event event) {
+       MainLable.setText("ادارة العملاء");
+
+    }
+
+    @FXML
+    public void Mangment_supliers_tab_selected(Event event) {
+        MainLable.setText("ادارة المزودين");
+    }
+
+    @FXML
+    public void Mangment_Staff_tab_selected(Event event) {
+        MainLable.setText("ادارة الموظفين");
+    }
+
+    @FXML
+    public void RequstSpearPart_tab_selected(Event event) {
+       MainLable.setText("طلب قطع غيار");
+    }
+
+    @FXML
+    public void Mangment_SpearParts_tab_selected(Event event) {
+        MainLable.setText("ادارة قطع الغيار");
+    }
+
+    @FXML
+    public void Mangment_Reports_tab_selected(Event event) {
+        MainLable.setText("ادارة التقارير");
+    }
+     @FXML
+    private void Main_Tab(Event event) {
+         MainLable.setText(" ");
+    }
+
+    @FXML
+    private void Mangment_Tools_tab_selected(Event event) {
+                 MainLable.setText("الأدوات");
+
+    }
+
 
     
     

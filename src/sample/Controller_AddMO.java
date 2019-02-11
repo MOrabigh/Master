@@ -361,7 +361,7 @@ public class Controller_AddMO implements Initializable {
     @FXML
     private void M_Btn_Delete_AddMo(ActionEvent event) throws SQLException {
 
-        String sql1 = "DELETE FROM  `maintenance _operation` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
+        String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
         statement1.executeUpdate(sql1);
@@ -409,13 +409,34 @@ public class Controller_AddMO implements Initializable {
             return;
 
         }
+            Statement st2 = connection.createStatement();
+            st2.executeQuery("SELECT * FROM `employee`");
+            ResultSet rs2 = st2.getResultSet();
+            //SELECT * FROM `employee` 
+             int IndexOFTech = 0;
+        for (int i = 0; i < ListOfTechichan.size(); i++) {
+            
+            while (rs2.next()) {
+
+                //ListOfTechichan.add(rs2.getString("EMP_NAME"));
+
+            
+            
+            //البحث ب رقم العميل من الداتابيس
+            if (Selct_Techichan_AddMO.getValue().equals(rs2.getString("EMP_NAME"))) {
+                
+                IndexOFTech = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
+
+            }}
+        }//IndexOFTech++;
+            System.out.println("INDEX== " + IndexOFTech);
         if (count == 1) {
             System.out.println("Equal  insert");
 
-            String sql1 = "INSERT INTO `maintenance _operation` VALUES(" + monumber + "," + "'" + Selct_MoStatus_AddMO.getValue() + "'" + "," + "'" + Txfiled_MOCost_AddMO.getText()
+            String sql1 = "INSERT INTO `maintenance_operation` VALUES(" + monumber + "," + "'" + Selct_MoStatus_AddMO.getValue() + "'" + "," + "'" + Txfiled_MOCost_AddMO.getText()
                     + "'" + "," + "'" + Txfiled_SPCost_AddMO.getText() + "'" + "," + "'" + Date_StartMo_AddMO.getValue() + "'" + "," + "'" + Date_EndMO_AddMO.getValue() + "'" + "," + "'"
                     + Date_Warranty_AddMO.getValue() + "'" + "," + "'" + Txfiled_ProplemDisc_AddMO.getText() + "'" + "," + "'" + Txfiled_DevSerialN_AddMO.getText() + "'" + "," + "'" + Txfiled_DevDiscription_AddMO.getText()
-                    + "'" + "," + "'" + 1 + "'" + "," + "'" + Txfiled_CusMnum_AddMO.getText() + "', NULL ,NULL" + ")";
+                    + "'" + "," + "'" + IndexOFTech + "'" + "," + "'" + Txfiled_CusMnum_AddMO.getText() + "', NULL ,NULL" + ")";
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
@@ -423,9 +444,9 @@ public class Controller_AddMO implements Initializable {
         } else if (count == 2) {
             System.out.println("Equal  update");
             System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `maintenance _operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
+            String sql1 = "UPDATE  `maintenance_operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
                     + "',STARTING_DATE='" + Date_StartMo_AddMO.getValue()+ "',ENDING_DATE='" + Date_EndMO_AddMO.getValue()+ "',WARRANTY='" + Date_Warranty_AddMO.getValue()+ "',PROBLEM_DESC='" + Txfiled_ProplemDisc_AddMO.getText()
-                    + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText()+ "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText()+ "',EMPLOYEE_ID='" +1+ "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
+                    + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText()+ "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText()+ "',EMPLOYEE_ID='" +IndexOFTech+ "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
                     + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
@@ -435,7 +456,7 @@ public class Controller_AddMO implements Initializable {
             if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid")) {
 
                 System.out.println("PAAAAAAAAAID");
-                String inv_num_date = "UPDATE  `maintenance _operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ Date_Warranty_AddMO.getValue() + "',INVOICE_NBER='" +/*المفروض تكون فارغه وتنشى سيكونس*/ 4 + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+                String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ Date_Warranty_AddMO.getValue() + "',INVOICE_NBER='" +/*المفروض تكون فارغه وتنشى سيكونس*/ 4 + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
                 java.sql.Statement statement2 = connection.createStatement();
                 statement2.executeUpdate(inv_num_date);
 
@@ -460,7 +481,8 @@ public class Controller_AddMO implements Initializable {
         }
         Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM `maintenance _operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER WHERE MO_NBER = " + Txfiled_MOnum_AddMO.getText());
+        st.executeQuery("SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE MO_NBER = " + Txfiled_MOnum_AddMO.getText());
+
         ResultSet rs = st.getResultSet();
         //st = connection.prepareCall(sql);
 
@@ -499,7 +521,8 @@ public class Controller_AddMO implements Initializable {
 
                 //List<String> Tec = new ArrayList<>();
                 //Tec.add(rs.getString("EMPLOYEE_ID"));
-                Selct_Techichan_AddMO.getSelectionModel().select(rs.getString("EMPLOYEE_ID"));
+                System.out.println("PPPPPPPPPPPPPP "+rs.getString("EMP_NAME"));
+                Selct_Techichan_AddMO.getSelectionModel().select(rs.getString("EMP_NAME"));
 
                 Btn_Delete_AddMo.setDisable(false);
                 Btn_Save_AddMo.setDisable(false);
@@ -521,7 +544,7 @@ public class Controller_AddMO implements Initializable {
         } else {
 
             Statement st2 = connection.createStatement();
-            st2.executeQuery("SELECT * FROM `maintenance _operation` ORDER BY `MO_NBER` DESC LIMIT 1");
+            st2.executeQuery("SELECT * FROM `maintenance_operation` ORDER BY `MO_NBER` DESC LIMIT 1");
             ResultSet rs2 = st2.getResultSet();
             //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
             if (rs2.first()) {

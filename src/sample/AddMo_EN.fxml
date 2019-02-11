@@ -78,13 +78,13 @@
                                  <children>
                                     <VBox layoutX="2.0" prefHeight="269.0" prefWidth="710.0">
                                        <children>
-                                          <TableView fx:id="Table_SelectedSP_AddMO" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#M_MousClicked_TabelSelecSP_AddMO" prefHeight="271.0" prefWidth="710.0">
+                                          <TableView fx:id="Table_SelectedSP_AddMO" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#M_MousClicked_TabelSelecSP_AddMO" prefHeight="271.0" prefWidth="710.0">
                                              <columns>
-                                                <TableColumn fx:id="Col_SPSN_SelectedSP_AddMO" prefWidth="145.0" text="Serial number " />
-                                                <TableColumn fx:id="Col_SPprice_SelectedSP_AddMO" minWidth="0.0" prefWidth="110.0" text="Cost" />
-                                                <TableColumn fx:id="Col_SPdisc_SelectedSP_AddMO" prefWidth="233.0" text="Description" />
-                                                <TableColumn fx:id="Col_SPname_SelectedSP_AddMO" minWidth="0.0" prefWidth="101.0" text="Name" />
                                                 <TableColumn fx:id="Col_SPnum_SelectedSP_AddMO" prefWidth="120.0" text="Number" />
+                                                <TableColumn fx:id="Col_SPname_SelectedSP_AddMO" minWidth="0.0" prefWidth="101.0" text="Name" />
+                                                <TableColumn fx:id="Col_SPdisc_SelectedSP_AddMO" prefWidth="233.0" text="Description" />
+                                                <TableColumn fx:id="Col_SPprice_SelectedSP_AddMO" minWidth="0.0" prefWidth="110.0" text="Cost" />
+                                                <TableColumn fx:id="Col_SPSN_SelectedSP_AddMO" prefWidth="145.0" text="Serial number " />
                                              </columns>
                                           </TableView>
                                        </children>
@@ -125,12 +125,12 @@
                                  <children>
                                     <VBox layoutX="10.0" prefHeight="267.0" prefWidth="694.0">
                                        <children>
-                                          <TableView fx:id="Table_AddSP_AddMO" nodeOrientation="RIGHT_TO_LEFT" prefHeight="277.0" prefWidth="694.0">
+                                          <TableView fx:id="Table_AddSP_AddMO" nodeOrientation="LEFT_TO_RIGHT" prefHeight="277.0" prefWidth="694.0">
                                              <columns>
-                                                <TableColumn fx:id="Col_SPprice_AddSP_AddMO" prefWidth="152.0" text="Cost" />
-                                                <TableColumn fx:id="Col_SPdisc_AddSP_AddMO" minWidth="0.0" prefWidth="313.0" text="Description" />
-                                                <TableColumn fx:id="Col_SPname_AddSP_AddMO" minWidth="0.0" prefWidth="125.0" text="Name" />
                                                 <TableColumn fx:id="Col_SPnum_AddSP_AddMO" prefWidth="100.0" text="Number" />
+                                                <TableColumn fx:id="Col_SPname_AddSP_AddMO" minWidth="0.0" prefWidth="125.0" text="Name" />
+                                                <TableColumn fx:id="Col_SPdisc_AddSP_AddMO" minWidth="0.0" prefWidth="313.0" text="Description" />
+                                                <TableColumn fx:id="Col_SPprice_AddSP_AddMO" prefWidth="152.0" text="Cost" />
                                              </columns>
                                           </TableView>
                                        </children>

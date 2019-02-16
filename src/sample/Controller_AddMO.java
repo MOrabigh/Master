@@ -548,6 +548,7 @@ public class Controller_AddMO implements Initializable {
             ResultSet rs2 = st2.getResultSet();
             //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
             if (rs2.first()) {
+                
                 System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                 //System.out.println();
                 count = 1;

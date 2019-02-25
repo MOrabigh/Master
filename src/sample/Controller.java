@@ -220,8 +220,25 @@ public class Controller implements Initializable{
         String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " +  Txfiled_MNum_Customer.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-        statement1.executeUpdate(sql1);
+       
         clear();
+         try {
+             statement1.executeUpdate(sql1);
+            
+             {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Deleted Successfully");
+            alert.showAndWait();
+            return;
+             }} catch (SQLException e) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(" Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`maintenance_operation`, CONSTRAINT `maintenance_operation_ibfk_2` FOREIGN KEY (`CUS_MOBILE_NBER`) REFERENCES `customer` (`CUS_MOBILE_NBER`) ON DELETE NO ACTION)");
+            alert.showAndWait();
+            return;
+        }
+      
     }
      public void clear(){
         Txfiled_MNum_Customer.clear();
@@ -353,7 +370,7 @@ public class Controller implements Initializable{
         String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " +   Txfiled_Num_Employee.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-        statement1.executeUpdate(sql1);
+       
         Txfiled_Num_Employee.setDisable(false);
         Txfiled_Name_Employee.clear();
         Txfiled_Email_Employee.clear();
@@ -362,6 +379,22 @@ public class Controller implements Initializable{
          Selct_JType_Employee.getSelectionModel().clearSelection();
          Selct_Sex_Employee.getSelectionModel().clearSelection();
          Txfiled_Password_Employee.clear();
+           try {
+             statement1.executeUpdate(sql1);
+            
+             {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Deleted Successfully");
+            alert.showAndWait();
+            return;
+             }} catch (SQLException e) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(" Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`maintenance_operation`, CONSTRAINT `maintenance_operation_ibfk_1` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `employee` (`EMPLOYEE_ID`) ON DELETE NO ACTION)");
+            alert.showAndWait();
+            return;
+        }
         
 
     }
@@ -597,12 +630,29 @@ public class Controller implements Initializable{
           String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " +   Txfiled_SPNum_SP.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-        statement1.executeUpdate(sql1);
+       
           Txfiled_SPNum_SP.setDisable(false);
          Txfiled_Name_SP.clear();
          Txfiled_Price_SP.clear();
          Txfiled_Quantity_SP.clear();
           Txfiled_Discription_SP.clear();
+          try {
+             statement1.executeUpdate(sql1);
+            
+             {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Deleted Successfully");
+            alert.showAndWait();
+            return;
+             }} catch (SQLException e) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`require`, CONSTRAINT `require_ibfk_2` FOREIGN KEY (`SP_NBER`) REFERENCES `spare_parts` (`SP_NBER`)) or Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`attach`, CONSTRAINT `attach_ibfk_1` FOREIGN KEY (`SP_NBER`) REFERENCES `spare_parts` (`SP_NBER`))");
+            alert.showAndWait();
+            return;
+        }
+      
         
     }
 
@@ -758,8 +808,25 @@ public class Controller implements Initializable{
         String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " +   Txfiled_Num_Supplier.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-        statement1.executeUpdate(sql1);
+       
              clearSUP ();
+              try {
+             statement1.executeUpdate(sql1);
+            
+             {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Deleted Successfully");
+            alert.showAndWait();
+            return;
+             }} catch (SQLException e) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`requested_spare_parts`, CONSTRAINT `requested_spare_parts_ibfk_1` FOREIGN KEY (`SUPPLIER_NBER`) REFERENCES `supplier` (`SUPPLIER_NBER`))");
+            alert.showAndWait();
+            return;
+        }
+      
     }
      @FXML
    private void M_Btn_Cancle_Supplier(ActionEvent event) {

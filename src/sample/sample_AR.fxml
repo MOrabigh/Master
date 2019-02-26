@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane cacheShape="false" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="783.0" prefWidth="1390.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="rootPage" cacheShape="false" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="783.0" prefWidth="1390.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <JFXTabPane layoutX="180.0" layoutY="72.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="628.0" prefWidth="1370.0" side="RIGHT" stylesheets="@../css/hr22.css" tabMaxWidth="77.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0">
          <tabs>
@@ -58,7 +58,7 @@
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
+                                    <Label fx:id="SP_aboutTObeOUT_MainWindow" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -78,7 +78,7 @@
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
+                                    <Label fx:id="PendingMO_MainWindow" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="30.0" />
                                        </VBox.margin>
@@ -98,7 +98,7 @@
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
+                                    <Label fx:id="FinhedMO_MainWindow" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -118,7 +118,7 @@
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
+                                    <Label fx:id="CurrentMO_MainWindow" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: black;" text="0" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -226,7 +226,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_ChangeMN_Customer" layoutX="144.0" layoutY="21.0" onAction="#M_Btn_ChangeMN_Customer" stylesheets="/css/hr.css" text="تغير هاتف العميل  ">
+                                    <JFXButton fx:id="Btn_ChangeMN_Customer" disable="true" layoutX="144.0" layoutY="21.0" onAction="#M_Btn_ChangeMN_Customer" stylesheets="/css/hr.css" text="تغير هاتف العميل  ">
                                        <graphic>
                                           <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -238,7 +238,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Cancle_Customer" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_Customer" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancle_Customer" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_Customer" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -250,7 +250,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Delete_Customer" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_Customer" stylesheets="/css/hr.css" text="حذف">
+                                    <JFXButton fx:id="Btn_Delete_Customer" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_Customer" stylesheets="/css/hr.css" text="حذف">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -290,7 +290,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css">
+                                    <Label stylesheets="/css/hr.css" text="ادارة العملاء">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -350,7 +350,7 @@
                   </HBox>
                </graphic>
             </Tab>
-            <Tab fx:id="Mangment_MO_Tab" onSelectionChanged="#Mangment_MO_tab_selected">
+           <Tab fx:id="Mangment_MO_Tab" onSelectionChanged="#Mangment_MO_tab_selected">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -364,14 +364,15 @@
                                              <children>
                                                 <VBox layoutX="10.0" prefHeight="444.0" prefWidth="1095.0">
                                                    <children>
-                                                      <TableView>
+                                                      <TableView fx:id="Table_CurrentMO_MngMO">
                                                          <columns>
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="التكلفة" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="تاريخ الإنتهاء المتوقع" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="فني الصيانة" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="هاتف العميل" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="اسم العميل" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="رقم عملية الصيانة" />
+                                                            <TableColumn fx:id="Col_MOnum_Current_MngMO" minWidth="104.0" prefWidth="112.0" text="رقم عملية الصيانة" />
+                                                            <TableColumn fx:id="Col_CusName_Current_MngMO" minWidth="160.0" prefWidth="160.0" text="اسم العميل" />
+                                                            <TableColumn fx:id="Col_CusMobile_Current_MngMO" minWidth="172.0" prefWidth="183.0" text="هاتف العميل" />
+                                                            <TableColumn fx:id="Col_MOtechin_Current_MngMO" prefWidth="161.0" text="فني الصيانة" />
+                                                            <TableColumn fx:id="Col_MOEndDate_Current_MngMO" minWidth="65.0" prefWidth="152.0" text="تاريخ الإنتهاء المتوقع" />
+                                                            <TableColumn fx:id="Col_MOStatus_Current_MngMO" minWidth="61.0" prefWidth="186.0" text="الحالة" />
+                                                            <TableColumn fx:id="Col_Cost_Current_MngMO" minWidth="136.0" prefWidth="139.0" text="التكلفة" />
                                                          </columns>
                                                          <VBox.margin>
                                                             <Insets top="15.0" />
@@ -381,7 +382,7 @@
                                                 </VBox>
                                                 <HBox alignment="CENTER" layoutX="19.0" layoutY="413.0" prefHeight="60.0" prefWidth="1088.0">
                                                    <children>
-                                                      <JFXButton onAction="#Btn_Edit_MangeCurrentMO" prefHeight="39.0" prefWidth="92.0" stylesheets="/css/hr.css" text="تعديل ">
+                                                      <JFXButton fx:id="Btn_Edit_MangeCurrentMO" onAction="#M_Btn_Edit_MangeCurrentMO" prefHeight="39.0" prefWidth="92.0" stylesheets="/css/hr.css" text="تعديل ">
                                                          <graphic>
                                                             <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -393,7 +394,7 @@
                                                             <Insets right="30.0" />
                                                          </HBox.margin>
                                                       </JFXButton>
-                                                      <JFXTextField alignment="CENTER" onAction="#M_Txfiled_Search_MangeCurrentMO" promptText="بحث برقم العملية">
+                                                      <JFXTextField fx:id="Txfiled_Search_MangeCurrentMO" alignment="CENTER" onAction="#M_Txfiled_Search_MangeCurrentMO" promptText="بحث برقم العملية">
                                                          <HBox.margin>
                                                             <Insets left="30.0" />
                                                          </HBox.margin>
@@ -412,14 +413,15 @@
                                        <children>
                                           <VBox layoutX="10.0" prefHeight="444.0" prefWidth="1095.0">
                                              <children>
-                                                <TableView>
+                                                <TableView fx:id="Table_FinshedMO_MngMO">
                                                    <columns>
-                                                      <TableColumn minWidth="182.0" prefWidth="0.0" text="التكلفة" />
-                                                      <TableColumn minWidth="182.0" prefWidth="0.0" text="تاريخ الإنتهاء المتوقع" />
-                                                      <TableColumn minWidth="182.0" prefWidth="0.0" text="فني الصيانة" />
-                                                      <TableColumn minWidth="182.0" prefWidth="0.0" text="هاتف العميل" />
-                                                      <TableColumn minWidth="182.0" prefWidth="0.0" text="اسم العميل" />
-                                                      <TableColumn minWidth="182.0" prefWidth="0.0" text="رقم عملية الصيانة" />
+                                                      <TableColumn fx:id="Col_MOnum_Finshed_MngMO" minWidth="50.0" prefWidth="119.0" text="رقم عملية الصيانة" />
+                                                      <TableColumn fx:id="Col_CusName_Finshed_MngMO" minWidth="63.0" prefWidth="200.0" text="اسم العميل" />
+                                                      <TableColumn fx:id="Col_CusMobile_Finshed_MngMO" minWidth="137.0" prefWidth="161.0" text="هاتف العميل" />
+                                                      <TableColumn fx:id="Col_MOtechin_Finshed_MngMO" minWidth="182.0" prefWidth="182.0" text="فني الصيانة" />
+                                                      <TableColumn fx:id="Col_MOEndDate_Finshed_MngMO" minWidth="166.0" prefWidth="166.0" text="تاريخ الإنتهاء المتوقع" />
+                                                      <TableColumn fx:id="Col_MOStatus_Finshed_MngMO" minWidth="61.0" prefWidth="154.0" text="الحالة" />
+                                                      <TableColumn fx:id="Col_MOCost_Finshed_MngMO" minWidth="112.0" prefWidth="112.0" text="التكلفة" />
                                                    </columns>
                                                    <VBox.margin>
                                                       <Insets top="15.0" />
@@ -460,18 +462,19 @@
                                              <children>
                                                 <VBox layoutX="10.0" prefHeight="444.0" prefWidth="1095.0">
                                                    <children>
-                                                      <TableView>
-                                                         <columns>
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="التكلفة" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="تاريخ الإنتهاء المتوقع" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="فني الصيانة" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="هاتف العميل" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="اسم العميل" />
-                                                            <TableColumn minWidth="182.0" prefWidth="0.0" text="رقم عملية الصيانة" />
-                                                         </columns>
+                                                      <TableView fx:id="Table_PreviousMO_MngMO">
                                                          <VBox.margin>
                                                             <Insets top="15.0" />
                                                          </VBox.margin>
+                                                         <columns>
+                                                            <TableColumn fx:id="Col_MOnum_Previous_MngMO" minWidth="50.0" prefWidth="112.0" text="رقم عملية الصيانة" />
+                                                            <TableColumn fx:id="Col_CusName_Previous_MngMO" minWidth="178.0" prefWidth="178.0" text="اسم العميل" />
+                                                            <TableColumn fx:id="Col_CusMobile_Previous_MngMO" minWidth="182.0" prefWidth="182.0" text="هاتف العميل" />
+                                                            <TableColumn fx:id="Col_MOtechin_Previous_MngMO" minWidth="182.0" prefWidth="183.0" text="فني الصيانة" />
+                                                            <TableColumn fx:id="Col_MOEndDate_Previous_MngMO" minWidth="158.0" prefWidth="158.0" text="تاريخ الإنتهاء المتوقع" />
+                                                            <TableColumn fx:id="Col_MOStatus_Previous_MngMO" minWidth="61.0" prefWidth="167.0" text="الحالة" />
+                                                            <TableColumn fx:id="Col_MOCost_Previous_MngMO" minWidth="90.0" prefWidth="114.0" text="التكلفة" />
+                                                         </columns>
                                                       </TableView>
                                                    </children>
                                                 </VBox>
@@ -510,12 +513,15 @@
                                              <children>
                                                 <VBox layoutX="10.0" prefHeight="444.0" prefWidth="1095.0">
                                                    <children>
-                                                      <TableView>
+                                                      <TableView fx:id="Table_pendingMO_MngMO">
                                                          <columns>
-                                                            <TableColumn minWidth="274.0" prefWidth="0.0" text="التكلفة" />
-                                                            <TableColumn minWidth="274.0" prefWidth="0.0" text="هاتف العميل" />
-                                                            <TableColumn minWidth="274.0" prefWidth="0.0" text="اسم العميل" />
-                                                            <TableColumn minWidth="274.0" prefWidth="0.0" text="رقم عملية الصيانة" />
+                                                            <TableColumn fx:id="Col_MOnum_Pending_MngMO" minWidth="100.0" prefWidth="130.0" text="رقم عملية الصيانة" />
+                                                            <TableColumn fx:id="Col_CusName_Pending_MngMO" minWidth="184.0" prefWidth="213.0" text="اسم العميل" />
+                                                            <TableColumn fx:id="Col_CusMobile_Pending_MngMO" minWidth="122.0" prefWidth="153.0" text="هاتف العميل" />
+                                                            <TableColumn fx:id="Col_MOtechin_Pending_MngMO" minWidth="167.0" prefWidth="167.0" text="فني الصيانة" />
+                                                            <TableColumn fx:id="Col_MOEndDate_Pending_MngMO" minWidth="65.0" prefWidth="141.0" text="تاريخ الإنتهاء المتوقع" />
+                                                            <TableColumn fx:id="Col_MOStatus_Pending_MngMO" minWidth="61.0" prefWidth="187.0" text="الحالة" />
+                                                            <TableColumn fx:id="Col_MOCost_Pending_MngMO" minWidth="50.0" prefWidth="103.0" text="التكلفة" />
                                                          </columns>
                                                          <VBox.margin>
                                                             <Insets top="15.0" />
@@ -718,7 +724,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="1.0" layoutY="-3.0" prefHeight="69.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css">
+                                    <Label stylesheets="/css/hr.css" text="ادارة قطع الغيار">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -778,17 +784,17 @@
                   </HBox>
                </graphic>
             </Tab>
-            <Tab onSelectionChanged="#RequstSpearPart_tab_selected">
+             <Tab onSelectionChanged="#RequstSpearPart_tab_selected">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="470.0">
                      <children>
-                        <AnchorPane layoutX="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="600.0">
+                        <AnchorPane layoutX="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="951.0">
                            <children>
-                              <VBox layoutY="83.0" prefHeight="164.0" prefWidth="300.0">
+                              <VBox layoutX="26.0" layoutY="73.0" prefHeight="164.0" prefWidth="300.0">
                                  <children>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="59.0" prefWidth="300.0">
                                        <children>
-                                          <JFXDatePicker defaultColor="BLACK" prefHeight="25.0" prefWidth="113.0">
+                                          <JFXDatePicker fx:id="Date_REQdate_ReqSP" defaultColor="BLACK" prefHeight="25.0" prefWidth="153.0">
                                              <HBox.margin>
                                                 <Insets left="35.0" right="20.0" />
                                              </HBox.margin>
@@ -802,47 +808,24 @@
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox alignment="TOP_RIGHT" layoutX="300.0" layoutY="83.0" prefHeight="164.0" prefWidth="300.0">
+                              <VBox alignment="TOP_RIGHT" layoutX="637.0" layoutY="73.0" prefHeight="164.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField alignment="CENTER" labelFloat="true" promptText="رقم الطلب">
+                                    <JFXTextField fx:id="Txfiled_REQnum_ReqSP" alignment="CENTER" labelFloat="true" promptText="رقم الطلب">
                                        <VBox.margin>
-                                          <Insets left="15.0" right="15.0" top="30.0" />
+                                          <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <HBox alignment="CENTER" prefHeight="59.0" prefWidth="300.0">
-                                       <children>
-                                          <ComboBox prefWidth="150.0">
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                             <HBox.margin>
-                                                <Insets left="20.0" right="20.0" />
-                                             </HBox.margin>
-                                          </ComboBox>
-                                          <Label text="المزود:">
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                             <HBox.margin>
-                                                <Insets left="20.0" right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <VBox.margin>
-                                          <Insets top="30.0" />
-                                       </VBox.margin>
-                                    </HBox>
                                  </children>
                               </VBox>
-                              <HBox alignment="CENTER" layoutX="-1.0" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
+                              <HBox alignment="CENTER" layoutX="176.0" layoutY="584.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton stylesheets="/css/hr.css" text="طباعة">
+                                    <JFXButton fx:id="Btn_Print_ReqSP" onAction="#M_Btn_Print_ReqSP" stylesheets="/css/hr.css" text="طباعة">
                                        <graphic>
                                           <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -854,7 +837,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton layoutX="10.0" layoutY="10.0" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancle_ReqSP" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_ReqSP" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -866,7 +849,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton layoutX="10.0" layoutY="10.0" stylesheets="/css/hr.css" text="حذف">
+                                    <JFXButton fx:id="Btn_Delete_ReqSP" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_ReqSP" stylesheets="/css/hr.css" text="حذف">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -878,7 +861,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton layoutX="62.0" layoutY="10.0" stylesheets="/css/hr.css" text="حفظ">
+                                    <JFXButton fx:id="Btn_Save_ReqSP" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_ReqSP" stylesheets="/css/hr.css" text="حفظ">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -890,7 +873,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton layoutX="356.0" layoutY="27.0" stylesheets="/css/hr.css" text="بحث">
+                                    <JFXButton fx:id="Btn_Search_ReqSP" layoutX="356.0" layoutY="27.0" onAction="#M_Btn_Search_ReqSP" stylesheets="/css/hr.css" text="بحث">
                                        <graphic>
                                           <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -913,9 +896,9 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox layoutY="63.0" prefHeight="20.0" prefWidth="600.0">
+                              <HBox layoutY="63.0" prefHeight="20.0" prefWidth="957.0">
                                  <children>
-                                    <Separator prefHeight="22.0" prefWidth="601.0" stylesheets="/css/hr.css">
+                                    <Separator prefHeight="20.0" prefWidth="964.0" stylesheets="/css/hr.css">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -925,27 +908,33 @@
                                     </Separator>
                                  </children>
                               </HBox>
-                              <HBox layoutY="247.0" prefHeight="207.0" prefWidth="600.0">
+                              <HBox layoutY="177.0" prefHeight="396.0" prefWidth="935.0">
                                  <children>
-                                    <JFXTabPane prefHeight="207.0" prefWidth="594.0" styleClass="jfx-tab-pane1" stylesheets="/css/hr22.css" tabMinWidth="280.0">
+                                    <JFXTabPane prefHeight="326.0" prefWidth="935.0" styleClass="jfx-tab-pane1" stylesheets="/css/hr22.css" tabMinWidth="462.0">
                                        <tabs>
                                           <Tab text="القطع المضافة">
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <VBox layoutX="10.0" prefHeight="172.0" prefWidth="475.0">
+                                                      <VBox prefHeight="354.0" prefWidth="769.0">
                                                          <children>
-                                                            <TableView prefHeight="200.0" prefWidth="200.0">
-                                                              <columns>
-                                                                <TableColumn prefWidth="241.0" text="الكمية" />
-                                                                <TableColumn prefWidth="212.0" text="القطعة" />
-                                                              </columns>
+                                                            <TableView fx:id="Table_SelectedSP_ReqSP" onMouseClicked="#M_MousClicked_TabelSelecSP_ReqSP" prefHeight="354.0" prefWidth="769.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="Col_SPQuantity_SelectedSP_ReqSP" prefWidth="241.0" text="الكمية" />
+                                                                  <TableColumn fx:id="Col_SPname_SelectedSP_ReqSP" prefWidth="310.0" text="اسم القطعة" />
+                                                                  <TableColumn fx:id="Col_SPnum_SelectedSP_ReqSP" prefWidth="215.0" text="رقم القطعة" />
+                                                               </columns>
                                                             </TableView>
                                                          </children>
                                                       </VBox>
-                                                      <VBox alignment="CENTER" layoutX="505.0" layoutY="28.0" prefHeight="98.0" prefWidth="75.0">
+                                                      <VBox alignment="CENTER" layoutX="769.0" prefHeight="354.0" prefWidth="160.0">
                                                          <children>
-                                                            <JFXButton stylesheets="/css/hr.css" text="ازالة">
+                                                            <JFXTextField fx:id="Txfiled_QuanitiySP_ReqSP" alignment="CENTER" onAction="#M_Txfiled_QuanitiySP_ReqSP" promptText="الكمية">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" left="10.0" right="10.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </JFXTextField>
+                                                            <JFXButton fx:id="Btn_RemoveSP_ReqSP" onAction="#M_Btn_RemoveSP_ReqSP" prefHeight="49.0" prefWidth="104.0" stylesheets="/css/hr.css" text="ازالة">
                                                                <graphic>
                                                                   <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
@@ -953,6 +942,9 @@
                                                                      </image>
                                                                   </ImageView>
                                                                </graphic>
+                                                               <VBox.margin>
+                                                                  <Insets top="30.0" />
+                                                               </VBox.margin>
                                                             </JFXButton>
                                                          </children>
                                                       </VBox>
@@ -964,24 +956,25 @@
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <VBox layoutX="10.0" prefHeight="172.0" prefWidth="475.0">
+                                                      <VBox layoutX="10.0" prefHeight="354.0" prefWidth="769.0">
                                                          <children>
-                                                            <TableView prefHeight="200.0" prefWidth="200.0">
+                                                            <TableView fx:id="Table_AddSP_ReqSP" prefHeight="354.0" prefWidth="769.0">
                                                                <columns>
-                                                                  <TableColumn prefWidth="241.0" text="الكمية" />
-                                                                  <TableColumn prefWidth="212.0" text="القطعة" />
+                                                                  <TableColumn fx:id="Col_SPQuantity_AddSP_ReqSP" prefWidth="241.0" text="الكمية" />
+                                                                  <TableColumn fx:id="Col_SPname_AddSP_ReqSP" prefWidth="310.0" text="اسم القطعة" />
+                                                                  <TableColumn fx:id="Col_SPnum_AddSP_ReqSP" prefWidth="215.0" text="رقم القطعة" />
                                                                </columns>
                                                             </TableView>
                                                          </children>
                                                       </VBox>
-                                                      <VBox alignment="CENTER" layoutX="486.0" layoutY="2.0" prefHeight="171.0" prefWidth="108.0">
+                                                      <VBox alignment="CENTER" layoutX="775.0" layoutY="1.0" prefHeight="360.0" prefWidth="160.0">
                                                          <children>
-                                                            <JFXTextField alignment="CENTER" promptText="بحث">
+                                                            <JFXTextField fx:id="Txfiled_SearchSP_ReqSP" alignment="CENTER" onKeyPressed="#M_Txfiled_SearchSP_ReqSP" promptText="بحث">
                                                                <VBox.margin>
-                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                                                                  <Insets bottom="30.0" left="10.0" right="10.0" top="5.0" />
                                                                </VBox.margin>
                                                             </JFXTextField>
-                                                            <JFXButton stylesheets="/css/hr.css" text="اضافة">
+                                                            <JFXButton fx:id="Btn_AddSP_ReqSP" onAction="#M_Btn_AddSP_ReqSP" prefHeight="51.0" prefWidth="105.0" stylesheets="/css/hr.css" text="اضافة">
                                                                <graphic>
                                                                   <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
@@ -990,7 +983,7 @@
                                                                   </ImageView>
                                                                </graphic>
                                                                <VBox.margin>
-                                                                  <Insets bottom="10.0" top="10.0" />
+                                                                  <Insets bottom="10.0" top="30.0" />
                                                                </VBox.margin>
                                                             </JFXButton>
                                                          </children>
@@ -1005,6 +998,29 @@
                                        </HBox.margin>
                                     </JFXTabPane>
                                  </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="326.0" layoutY="96.0" prefHeight="59.0" prefWidth="300.0">
+                                 <children>
+                                    <ComboBox fx:id="Selct_Supplier_ReqSP" prefWidth="150.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets left="20.0" right="20.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <Label text="المزود:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets left="20.0" right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </HBox>
                            </children>
                         </AnchorPane>
@@ -1140,7 +1156,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="1.0" layoutY="-2.0" prefHeight="68.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css">
+                                    <Label stylesheets="/css/hr.css" text="ادارة المزودين">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -1286,7 +1302,7 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Employee" alignment="CENTER" labelFloat="true" promptText="كلمة المرور">
+                                    <JFXTextField fx:id="Txfiled_Password_Employee" alignment="CENTER" labelFloat="true" promptText="كلمة المرور">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1347,7 +1363,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutY="9.0" prefHeight="67.0" prefWidth="600.0">
                                  <children>
-                                    <Label stylesheets="/css/hr.css">
+                                    <Label stylesheets="/css/hr.css" text="ادارة الموظفين">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
@@ -1554,7 +1570,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="-1.0" layoutY="8.0" prefHeight="43.0" prefWidth="1120.0">
                            <children>
-                              <Label stylesheets="/css/hr.css">
+                              <Label stylesheets="/css/hr.css" text="التقارير">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -1609,7 +1625,7 @@
                   </HBox>
                </graphic>
             </Tab>
-            <Tab onSelectionChanged="#Mangment_Tools_tab_selected">
+            <Tab onSelectionChanged="#Mangment_Reports_tab_selected">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1121.0">
                      <children>
@@ -1676,7 +1692,7 @@
                         </VBox>
                         <HBox alignment="CENTER" layoutX="271.0" prefHeight="67.0" prefWidth="600.0">
                            <children>
-                              <Label stylesheets="/css/hr.css">
+                              <Label stylesheets="/css/hr.css" text="ادوات">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -1728,14 +1744,14 @@
             <Insets />
          </opaqueInsets>
       </JFXTabPane>
-      <HBox alignment="CENTER_RIGHT" cache="true" prefHeight="56.0" prefWidth="1370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_RIGHT" cache="true" prefHeight="56.0" prefWidth="1370.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="MainLable" alignment="CENTER" prefHeight="81.0" prefWidth="526.0">
+            <Label fx:id="MainLable" alignment="TOP_RIGHT" prefHeight="83.0" prefWidth="443.0">
                <font>
                   <Font size="44.0" />
                </font>
                <HBox.margin>
-                  <Insets right="340.0" />
+                  <Insets right="400.0" />
                </HBox.margin>
             </Label>
             <VBox alignment="CENTER" prefHeight="72.0" prefWidth="249.0" style="-fx-background-color: black;">

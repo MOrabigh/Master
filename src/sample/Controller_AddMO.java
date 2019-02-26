@@ -188,7 +188,7 @@ public class Controller_AddMO implements Initializable {
                     + " AND Seq_Nber=" + SPSelected2.get(i).getSP_Seq_Nber();
             System.out.println(sqlDeletSP);
             //SPSelected2.get(i).ge
-            String sqlupdateSP = "UPDATE `spare_parts` SET `QUANTITY` = QUANTITY+1 WHERE `spare_parts`.`SP_NBRE` ="+SPSelected2.get(i).getSP2_Number();
+            String sqlupdateSP = "UPDATE `spare_parts` SET `QUANTITY` = QUANTITY+1 WHERE `spare_parts`.`SP_NBER` ="+SPSelected2.get(i).getSP2_Number();
             System.out.println(sqlupdateSP);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sqlDeletSP);
@@ -224,12 +224,60 @@ public class Controller_AddMO implements Initializable {
             Search(trysql);
 
         }}*/
+    
+     public void loadInTO(String MO_Nber, String CUS_NAME, String PROBLEM_DESC, String CUS_MOBILE_NBER, String SP_COST, String MO_COST, String DEVICE_SN, String DEVICE_DESC, String WARRANTY, String STARTING_DATE, String ENDING_DATE,
+            String STATE, String EMP_NAME) throws SQLException {
+        count = 2;
+
+        Txfiled_MOnum_AddMO.setDisable(true);
+        Txfiled_MOnum_AddMO.setText(MO_Nber);
+        Txfiled_CusName_AddMO.setText(CUS_NAME);
+        Txfiled_ProplemDisc_AddMO.setText(PROBLEM_DESC);
+        Txfiled_CusMnum_AddMO.setText(CUS_MOBILE_NBER);
+        Txfiled_SPCost_AddMO.setText(SP_COST);
+        Txfiled_MOCost_AddMO.setText(MO_COST);
+        Txfiled_DevSerialN_AddMO.setText(DEVICE_SN);
+        Txfiled_DevDiscription_AddMO.setText(DEVICE_DESC);
+
+        LocalDate WARRANTYDate = LocalDate.parse(WARRANTY);
+        LocalDate STARTINGDate = LocalDate.parse(STARTING_DATE);
+        LocalDate ENDINGDate = LocalDate.parse(ENDING_DATE);
+
+        Date_Warranty_AddMO.setValue(WARRANTYDate);
+        Date_StartMo_AddMO.setValue(STARTINGDate);
+        Date_EndMO_AddMO.setValue(ENDINGDate);
+
+        //List<String> State = new ArrayList<>();
+        //State.add(rs.getString("STATE"));
+        //Selct_MoStatus_AddMO.setItems(FXCollections.observableArrayList(State));
+        Selct_MoStatus_AddMO.getSelectionModel().select(STATE);
+
+        //List<String> Tec = new ArrayList<>();
+        //Tec.add(rs.getString("EMPLOYEE_ID"));
+        System.out.println("PPPPPPPPPPPPPP " + EMP_NAME);
+        Selct_Techichan_AddMO.getSelectionModel().select(EMP_NAME);
+
+        Btn_Delete_AddMo.setDisable(false);
+        Btn_Save_AddMo.setDisable(false);
+        Btn_Print_AddMo.setDisable(false);
+        Btn_Delete_AddMo.setDisable(false);
+        Txfiled_CusName_AddMO.setDisable(true);
+        Btn_Cancle_AddMo.setDisable(false);
+        Btn_AddSP_AddMo.setDisable(false);
+        Btn_ReomveSP_AddMo.setDisable(false);
+        //loadlist.clear();
+        loadSpSelected();
+
+        calculate();
+
+    }
+
     public void Search(String Search, int Choose) {
         if (Choose == 2) {
             ResultSet rs = connectionClass.execQuery(Search);
             try {
                 while (rs.next()) {
-                    String mname = rs.getString("SP_NBRE");
+                    String mname = rs.getString("SP_NBER");
                     String mid = rs.getString("SP_NAME");
                     String mobile = rs.getString("DESCRIPTION");
                     String price = rs.getString("PRICE");
@@ -309,7 +357,7 @@ public class Controller_AddMO implements Initializable {
                     + seqNumber + "','" + "Null'" + ",'" + SPSelected.get(0).getSP_Price() + "')";
             System.out.println(sql1);
             
-             String sqlupdateSP = "UPDATE `spare_parts` SET `QUANTITY` = QUANTITY-1 WHERE `spare_parts`.`SP_NBRE` ="+SPSelected.get(0).getSP_Number();
+             String sqlupdateSP = "UPDATE `spare_parts` SET `QUANTITY` = QUANTITY-1 WHERE `spare_parts`.`SP_NBER` ="+SPSelected.get(0).getSP_Number();
             System.out.println(sqlupdateSP);
             
             java.sql.Statement statement1 = connection.createStatement();
@@ -622,7 +670,7 @@ public class Controller_AddMO implements Initializable {
         ResultSet rs = connectionClass.execQuery(query);
         try {
             while (rs.next()) {
-                String mname = rs.getString("SP_NBRE");
+                String mname = rs.getString("SP_NBER");
                 String mid = rs.getString("SP_NAME");
                 String mobile = rs.getString("DESCRIPTION");
                 String price = rs.getString("PRICE");
@@ -649,7 +697,7 @@ public class Controller_AddMO implements Initializable {
 
         String SQLqq = "SELECT *\n"
                 + "FROM   spare_parts s\n"
-                + "JOIN   `require` r ON s.SP_NBRE = r.SP_NBER WHERE MO_NBER= "+Txfiled_MOnum_AddMO.getText();
+                + "JOIN   `require` r ON s.SP_NBER = r.SP_NBER WHERE MO_NBER= "+Txfiled_MOnum_AddMO.getText();
         System.out.println(SQLqq);
         ResultSet rs = connectionClass.execQuery(SQLqq);
 
@@ -658,11 +706,11 @@ public class Controller_AddMO implements Initializable {
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
 
-                    int SP_num = Integer.parseInt(rs.getString("SP_NBRE"));
+                    int SP_num = Integer.parseInt(rs.getString("SP_NBER"));
                     int SP_Seq = Integer.parseInt(rs.getString("Seq_Nber"));
 
                     double SP_Pri = Double.parseDouble(rs.getString("PRICE"));
-                    System.out.println(rs.getString("SP_NBRE"));
+                    System.out.println(rs.getString("SP_NBER"));
 
                     double SP_Pri2 = Double.parseDouble(rs.getString("Effective_Price"));
 

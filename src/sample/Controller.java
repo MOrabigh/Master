@@ -1,4 +1,5 @@
 package sample;
+
 import Connectvy.ConnectionClass;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -45,11 +46,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Controller implements Initializable{
+public class Controller implements Initializable {
+
     ConnectionClass connectionClass = new ConnectionClass();
     // we call conneClass  that we make it up
     Connection connection = connectionClass.getConnection();
-    
+
     int count = 0;
     public ListView listv;
 
@@ -62,7 +64,6 @@ public class Controller implements Initializable{
     ObservableList<AddSP> ListOFSelectedSP = FXCollections.observableArrayList();
     ObservableList<AddSP> ListOFSP = FXCollections.observableArrayList();
 
-   
     @FXML
     public TableView<MO> Table_CurrentMO_MngMO;
     @FXML
@@ -187,8 +188,6 @@ public class Controller implements Initializable{
     @FXML
     private Label CurrentMO_MainWindow;
 
-    
-    
     @FXML
     private Tab Main_Tab;
     @FXML
@@ -207,7 +206,7 @@ public class Controller implements Initializable{
     private JFXButton Btn_ChangeMN_Customer;
     @FXML
     private JFXButton Btn_Save_Customer;
-      @FXML
+    @FXML
     private JFXButton Btn_Cancle_Customer;
 
     @FXML
@@ -234,12 +233,13 @@ public class Controller implements Initializable{
     private JFXButton Btn_Save_SP;
     @FXML
     private JFXButton Btn_Search_SP;
-      
+
     @FXML
     private ToggleGroup ReportsDate;
     @FXML
     private Label MainLable;
-     private JFXButton Btn_Cancel_Employee;
+    @FXML
+    private JFXButton Btn_Cancel_Employee;
 
     @FXML
     private JFXButton Btn_Delete_Employee;
@@ -249,8 +249,8 @@ public class Controller implements Initializable{
 
     @FXML
     private JFXButton Btn_Search_Employee;
-   
-  @FXML
+
+    @FXML
     private JFXTextField Txfiled_Name_Supplier;
 
     @FXML
@@ -289,7 +289,6 @@ public class Controller implements Initializable{
     private ComboBox<String> Selct_JType_Employee;
     ObservableList<String> ListOfJType = FXCollections.observableArrayList("Administrator", "ReceptionDesk", "Technician");
     ObservableList<String> ListOfSex = FXCollections.observableArrayList("Male", "Female");
-            
 
     @FXML
     private JFXTextField Txfiled_Num_Employee;
@@ -302,10 +301,8 @@ public class Controller implements Initializable{
 
     @FXML
     private JFXTextField Txfiled_Password_Employee;
-  
+
     //int count = 0;
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connectionClass.connectDB();
@@ -324,18 +321,18 @@ public class Controller implements Initializable{
         listv.getItems().add("---------------------------");
         listv.getItems().add("- قطع على وشك النفاذ");
         listv.getItems().add("- قطع الغيار التي نفذت كميتها");
-        
+
         Selct_JType_Employee.setItems(ListOfJType);
         Selct_Sex_Employee.setItems(ListOfSex);
 
-   intilCol();
+        intilCol();
         loadAllMO();
         //loadAllSP();
         loadSuppliers();
 
-           }
-    
-     private void intilCol() {
+    }
+
+    private void intilCol() {
 
         Col_MOnum_Current_MngMO.setCellValueFactory(new PropertyValueFactory<>("MO_Number"));
         Col_CusName_Current_MngMO.setCellValueFactory(new PropertyValueFactory<>("Cus_Name"));
@@ -408,7 +405,7 @@ public class Controller implements Initializable{
                     //Current
                     CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
 
-                } else if (rs.getString("STATE").equalsIgnoreCase("repaired"))  {
+                } else if (rs.getString("STATE").equalsIgnoreCase("repaired")) {
                     //Finshed
                     FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
 
@@ -423,7 +420,7 @@ public class Controller implements Initializable{
 
             String SPqury = "SELECT * FROM spare_parts WHERE `SP_QUANTITY` < 5";
             ResultSet rs2 = connectionClass.execQuery(SPqury);
-            int rowcount=0;
+            int rowcount = 0;
             if (rs2.last()) {
                 rowcount = rs2.getRow();
             }
@@ -603,18 +600,12 @@ i=1000;
         }
     }
 
-    
-    
-
-
-
     @FXML
     private void Btn_AddMO_MangeMO(ActionEvent event) {
-      loadWindow("/sample/AddMo_AR.fxml" ,"" );
+        loadWindow("/sample/AddMo_AR.fxml", "");
 
     }
 
-   
     @FXML
     private void M_Txfiled_MNum_Customer(ActionEvent event) {
     }
@@ -625,14 +616,15 @@ i=1000;
 
     @FXML
     private void M_Btn_Cancle_Customer(ActionEvent event) {
-    Txfiled_MNum_Customer.clear();
+        Txfiled_MNum_Customer.clear();
         Txfiled_Name_Customer.clear();
         Txfiled_Email_Customer.clear();
         Txfiled_Address_Customer.clear();
-        
-        Txfiled_MNum_Customer.setDisable(false);    }
 
-     @FXML
+        Txfiled_MNum_Customer.setDisable(false);
+    }
+
+    @FXML
     private void Btn_Edit_MangeFinshedMO(ActionEvent event) throws SQLException {
         openEdit(Table_FinshedMO_MngMO);
 
@@ -679,7 +671,7 @@ i=1000;
         if (rs.first()) {
 
             Controller_AddMO controller_AddMO = loader.getController();
-            
+
             controller_AddMO.loadInTO(rs.getString("MO_NBER"), rs.getString("CUS_NAME"), rs.getString("PROBLEM_DESC"), rs.getString("CUS_MOBILE_NBER"), rs.getString("SP_COST"), rs.getString("MO_COST"),
                     rs.getString("DEVICE_SN"), rs.getString("DEVICE_DESC"), rs.getString("WARRANTY"), rs.getString("STARTING_DATE"), rs.getString("ENDING_DATE"), rs.getString("STATE"), rs.getString("EMP_NAME"));
 
@@ -709,35 +701,35 @@ i=1000;
 
     @FXML
     private void M_Btn_Delete_Customer(ActionEvent event) throws SQLException {
-           
-        String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " +  Txfiled_MNum_Customer.getText();
+
+        String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-       
+
         clear();
-         try {
-             statement1.executeUpdate(sql1);
-            
-             {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Deleted Successfully");
-            alert.showAndWait();
-            return;
-             }} catch (SQLException e) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+        try {
+            statement1.executeUpdate(sql1);
+
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            }
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText(" Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`maintenance_operation`, CONSTRAINT `maintenance_operation_ibfk_2` FOREIGN KEY (`CUS_MOBILE_NBER`) REFERENCES `customer` (`CUS_MOBILE_NBER`) ON DELETE NO ACTION)");
             alert.showAndWait();
             return;
         }
-      
-    }
 
+    }
 
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) throws SQLException {
-         if (Txfiled_MNum_Customer.getText().isEmpty() || Txfiled_Name_Customer.getText().isEmpty() ) {
+        if (Txfiled_MNum_Customer.getText().isEmpty() || Txfiled_Name_Customer.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Pleas enter the value");
@@ -745,150 +737,130 @@ i=1000;
             return;
 
         }
-         
-        
-      if (count == 1) {
+
+        if (count == 1) {
             System.out.println("Equal  insert");
-              String sqll= ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" +Txfiled_MNum_Customer.getText()+ "','" +   Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" +Txfiled_Address_Customer.getText()+ "')");
-                   //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")"; 
-          System.out.println(sqll);
-        java.sql.Statement statement1 = connection.prepareStatement(sqll);
- 
-      
- 
-   statement1.executeUpdate(sqll);
+            String sqll = ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" + Txfiled_MNum_Customer.getText() + "','" + Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" + Txfiled_Address_Customer.getText() + "')");
+            //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")"; 
+            System.out.println(sqll);
+            java.sql.Statement statement1 = connection.prepareStatement(sqll);
 
-         
-      }
+            statement1.executeUpdate(sqll);
 
-    else if (count == 2){
-         System.out.println("Equal  update");
+        } else if (count == 2) {
+            System.out.println("Equal  update");
             //System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `customer` SET CUS_NAME='" + Txfiled_Name_Customer.getText() + "',CUS_EMAIL='" + Txfiled_Email_Customer.getText()  +"',CUS_ADDRESS='"+ Txfiled_Address_Customer.getText()
-                    +  "' WHERE CUS_MOBILE_NBER= '" + Txfiled_MNum_Customer.getText() + "'";
+            String sql1 = "UPDATE  `customer` SET CUS_NAME='" + Txfiled_Name_Customer.getText() + "',CUS_EMAIL='" + Txfiled_Email_Customer.getText() + "',CUS_ADDRESS='" + Txfiled_Address_Customer.getText()
+                    + "' WHERE CUS_MOBILE_NBER= '" + Txfiled_MNum_Customer.getText() + "'";
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-    }else if (count==3){
-        System.out.println("Equal  update mobile number");
-        String sqll = "UPDATE customer SET CUS_MOBILE_NBER='"+ Txfiled_MNum_Customer.getText()+"' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
-        System.out.println(sqll);
+        } else if (count == 3) {
+            System.out.println("Equal  update mobile number");
+            String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
+            System.out.println(sqll);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sqll);
-        
-    }
-      //count = 2;
-    
+
+        }
+        //count = 2;
+
     }
     public int number = 0;
 
-        
-   
-
-    
-
     @FXML
     private void M_Btn_Search_Customer(ActionEvent event) throws SQLException {
-           
-             Connection connection = connectionClass.getConnection();
+
+        Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
         st.executeQuery("SELECT * FROM `customer`  WHERE CUS_MOBILE_NBER = " + Txfiled_MNum_Customer.getText());
         ResultSet rs = st.getResultSet();
         if (rs.first()) {
 
-            System.out.println( Txfiled_MNum_Customer.getText());
+            System.out.println(Txfiled_MNum_Customer.getText());
 
             System.out.println("THIS MO NUMBER IN DB== " + rs.getString("CUS_MOBILE_NBER"));
-            System.out.println("THIS MO NUMBER IN FILED== " +  Txfiled_MNum_Customer.getText());
+            System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MNum_Customer.getText());
 
-            if (rs.getString("CUS_MOBILE_NBER").equals( Txfiled_MNum_Customer.getText())) {
+            if (rs.getString("CUS_MOBILE_NBER").equals(Txfiled_MNum_Customer.getText())) {
 
-              
-                
                 count = 2;
-                
-                
+
                 Txfiled_Name_Customer.setText(rs.getString("CUS_NAME"));
                 Txfiled_Email_Customer.setText(rs.getString("CUS_EMAIL"));
                 Txfiled_Address_Customer.setText(rs.getString("CUS_ADDRESS"));
                 Txfiled_MNum_Customer.setDisable(true);
                 Btn_Delete_Customer.setDisable(false);
                 Btn_Cancle_Customer.setDisable(false);
-                Btn_ChangeMN_Customer.setDisable(false); 
-               
-                
-        }}
-        else{  
-                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                count =1;
-                Txfiled_MNum_Customer.setDisable(true);
-                Txfiled_MNum_Customer.clear();
-                Btn_Cancle_Customer.setDisable(false);
-                Btn_Save_Customer.setDisable(false);
-                Btn_Delete_Customer.setDisable(false);
-                 Btn_ChangeMN_Customer.setDisable(false);
-                
-                
-        
-        }
-        
+                Btn_ChangeMN_Customer.setDisable(false);
 
-    } 
-    
-        
-     @FXML
+            }
+        } else {
+            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            count = 1;
+            Txfiled_MNum_Customer.setDisable(true);
+            Txfiled_MNum_Customer.clear();
+            Btn_Cancle_Customer.setDisable(false);
+            Btn_Save_Customer.setDisable(false);
+            Btn_Delete_Customer.setDisable(false);
+            Btn_ChangeMN_Customer.setDisable(false);
+
+        }
+
+    }
+
+    @FXML
     void M_Btn_Cancel_Employee(ActionEvent event) {
         Txfiled_Num_Employee.setDisable(false);
         Txfiled_Name_Employee.clear();
         Txfiled_Email_Employee.clear();
-         Txfiled_Address_Employee.clear();
-         Txfiled_MNum_Employee.clear();
-         Selct_JType_Employee.getSelectionModel().clearSelection();
-         Selct_Sex_Employee.getSelectionModel().clearSelection();
-         Txfiled_Password_Employee.clear();
-         
-        
+        Txfiled_Address_Employee.clear();
+        Txfiled_MNum_Employee.clear();
+        Selct_JType_Employee.getSelectionModel().clearSelection();
+        Selct_Sex_Employee.getSelectionModel().clearSelection();
+        Txfiled_Password_Employee.clear();
 
     }
+
     @FXML
     void M_Btn_Delete_Employee(ActionEvent event) throws SQLException {
-        String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " +   Txfiled_Num_Employee.getText();
+        String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-       
+
         Txfiled_Num_Employee.setDisable(false);
         Txfiled_Name_Employee.clear();
         Txfiled_Email_Employee.clear();
-         Txfiled_Address_Employee.clear();
-         Txfiled_MNum_Employee.clear();
-         Selct_JType_Employee.getSelectionModel().clearSelection();
-         Selct_Sex_Employee.getSelectionModel().clearSelection();
-         Txfiled_Password_Employee.clear();
-           try {
-             statement1.executeUpdate(sql1);
-            
-             {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Deleted Successfully");
-            alert.showAndWait();
-            return;
-             }} catch (SQLException e) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+        Txfiled_Address_Employee.clear();
+        Txfiled_MNum_Employee.clear();
+        Selct_JType_Employee.getSelectionModel().clearSelection();
+        Selct_Sex_Employee.getSelectionModel().clearSelection();
+        Txfiled_Password_Employee.clear();
+        try {
+            statement1.executeUpdate(sql1);
+
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            }
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText(" Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`maintenance_operation`, CONSTRAINT `maintenance_operation_ibfk_1` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `employee` (`EMPLOYEE_ID`) ON DELETE NO ACTION)");
             alert.showAndWait();
             return;
         }
-        
 
     }
-     @FXML
-   private void M_Btn_Save_Employee(ActionEvent event) throws SQLException {
-         
-    
-        if ( Txfiled_Num_Employee.getText().isEmpty() || Txfiled_Name_Employee.getText().isEmpty() || Txfiled_Email_Employee.getText().isEmpty() || 
-                  Txfiled_Address_Employee.getText().isEmpty() ||   Txfiled_MNum_Employee.getText().isEmpty()|| Selct_JType_Employee.getValue().isEmpty()||Selct_Sex_Employee.getValue().isEmpty() ||Txfiled_Password_Employee.getText().isEmpty() ) {
+
+    @FXML
+    private void M_Btn_Save_Employee(ActionEvent event) throws SQLException {
+
+        if (Txfiled_Num_Employee.getText().isEmpty() || Txfiled_Name_Employee.getText().isEmpty() || Txfiled_Email_Employee.getText().isEmpty()
+                || Txfiled_Address_Employee.getText().isEmpty() || Txfiled_MNum_Employee.getText().isEmpty() || Selct_JType_Employee.getValue().isEmpty() || Selct_Sex_Employee.getValue().isEmpty() || Txfiled_Password_Employee.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Pleas enter the value");
@@ -896,231 +868,192 @@ i=1000;
             return;
 
         }
-         
-        
-      if (count == 1) {
+
+        if (count == 1) {
             System.out.println("Equal  insert");
-             String sqll= "INSERT INTO employee (EMPLOYEE_ID, EMP_NAME, EMP_EMAIL,EMP_ADDRESS,EMP_MOBILE_NBER,JOP_TYPE,SEX,PASSWORD) VALUES ("+number+ "," + "'" +  Txfiled_Name_Employee.getText() + "'" + ","+"'" +   Txfiled_Email_Employee.getText()+ 
-                     "'" + ","+"'" +  Txfiled_Address_Employee.getText()+"'"+","+"'" + Txfiled_MNum_Employee.getText()+ "'"+","+"'"+ Selct_JType_Employee.getValue()+ "'"+","+"'" +Selct_Sex_Employee.getValue()+
-                    "'"+","+"'" + Txfiled_Password_Employee.getText()+ "')"; 
-          System.out.println(sqll);
-        java.sql.Statement statement1 = connection.prepareStatement(sqll);
- 
- 
-   statement1.executeUpdate(sqll);
+            String sqll = "INSERT INTO employee (EMPLOYEE_ID, EMP_NAME, EMP_EMAIL,EMP_ADDRESS,EMP_MOBILE_NBER,JOP_TYPE,SEX,PASSWORD) VALUES (" + number + "," + "'" + Txfiled_Name_Employee.getText() + "'" + "," + "'" + Txfiled_Email_Employee.getText()
+                    + "'" + "," + "'" + Txfiled_Address_Employee.getText() + "'" + "," + "'" + Txfiled_MNum_Employee.getText() + "'" + "," + "'" + Selct_JType_Employee.getValue() + "'" + "," + "'" + Selct_Sex_Employee.getValue()
+                    + "'" + "," + "'" + Txfiled_Password_Employee.getText() + "')";
+            System.out.println(sqll);
+            java.sql.Statement statement1 = connection.prepareStatement(sqll);
 
-         
-      }
+            statement1.executeUpdate(sqll);
 
-    else if (count == 2){
-         System.out.println("Equal  update");
+        } else if (count == 2) {
+            System.out.println("Equal  update");
             //System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `employee` SET   EMP_NAME='" +  Txfiled_Name_Employee.getText() + "',EMP_EMAIL='" + Txfiled_Email_Employee.getText()  +"',EMP_ADDRESS='"+  Txfiled_Address_Employee.getText()+"',EMP_MOBILE_NBER='"+Txfiled_MNum_Employee.getText()
-                    + "',JOP_TYPE='"+Selct_JType_Employee.getValue()+ "',SEX='"+Selct_Sex_Employee.getValue()+ "',PASSWORD='"+Txfiled_Password_Employee.getText()
-                    +  " 'WHERE EMPLOYEE_ID=' " + Txfiled_Num_Employee.getText() + "'";
-                        
-            
-                   
+            String sql1 = "UPDATE  `employee` SET   EMP_NAME='" + Txfiled_Name_Employee.getText() + "',EMP_EMAIL='" + Txfiled_Email_Employee.getText() + "',EMP_ADDRESS='" + Txfiled_Address_Employee.getText() + "',EMP_MOBILE_NBER='" + Txfiled_MNum_Employee.getText()
+                    + "',JOP_TYPE='" + Selct_JType_Employee.getValue() + "',SEX='" + Selct_Sex_Employee.getValue() + "',PASSWORD='" + Txfiled_Password_Employee.getText()
+                    + " 'WHERE EMPLOYEE_ID=' " + Txfiled_Num_Employee.getText() + "'";
+
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-    }
-      count = 2;
-    
-    
+        }
+        count = 2;
 
     }
-      @FXML
-   private void M_Btn_Search_Employee(ActionEvent event) throws SQLException {
-       
-     
-         Connection connection = connectionClass.getConnection();   
+
+    @FXML
+    private void M_Btn_Search_Employee(ActionEvent event) throws SQLException {
+
+        Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM `employee`  WHERE EMPLOYEE_ID = " +  Txfiled_Num_Employee.getText() );
+        st.executeQuery("SELECT * FROM `employee`  WHERE EMPLOYEE_ID = " + Txfiled_Num_Employee.getText());
         ResultSet rs = st.getResultSet();
         if (rs.first()) {
 
-            System.out.println( Txfiled_Num_Employee.getText());
+            System.out.println(Txfiled_Num_Employee.getText());
 
             System.out.println("THIS NU NUMBER IN DB== " + rs.getString("EMPLOYEE_ID"));
-            System.out.println("THIS NU NUMBER IN FILED== " +  Txfiled_Num_Employee.getText());
+            System.out.println("THIS NU NUMBER IN FILED== " + Txfiled_Num_Employee.getText());
 
             if (rs.getString("EMPLOYEE_ID").equals(Txfiled_Num_Employee.getText())) {
 
-            
                 count = 2;
-                
-                
-                 Txfiled_Name_Employee.setText(rs.getString("EMP_NAME"));
+
+                Txfiled_Name_Employee.setText(rs.getString("EMP_NAME"));
                 Txfiled_Email_Employee.setText(rs.getString("EMP_EMAIL"));
                 Txfiled_Address_Employee.setText(rs.getString("EMP_ADDRESS"));
-                 Txfiled_MNum_Employee.setText(rs.getString("EMP_MOBILE_NBER"));
-                 Selct_JType_Employee.getSelectionModel().select(rs.getString("JOP_TYPE"));
-                   Selct_Sex_Employee.getSelectionModel().select(rs.getString("SEX"));
-                  Txfiled_Password_Employee.setText(rs.getString("PASSWORD"));
-                
-                   Txfiled_Num_Employee.setDisable(true);
-                    Btn_Save_Employee.setDisable(false);
-                Btn_Delete_Employee.setDisable(false);
-                 Btn_Cancel_Employee.setDisable(false);
-                
-               
-                
-        }
-        
-        else{  
-            
-               Statement st2 = connection.createStatement();
-            st2.executeQuery("SELECT * FROM employee ORDER BY EMPLOYEE_ID DESC LIMIT 1");
-            ResultSet rs2 = st2.getResultSet();
-            //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-            if (rs2.first()) {
-                
-                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                //System.out.println();
-                
-                count = 1;
-                number = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
-                number ++;
-                System.out.println(number);
-                  Txfiled_Num_Employee.setText(String.valueOf(number));
-                  Txfiled_Num_Employee.setDisable(true);
+                Txfiled_MNum_Employee.setText(rs.getString("EMP_MOBILE_NBER"));
+                Selct_JType_Employee.getSelectionModel().select(rs.getString("JOP_TYPE"));
+                Selct_Sex_Employee.getSelectionModel().select(rs.getString("SEX"));
+                Txfiled_Password_Employee.setText(rs.getString("PASSWORD"));
+
+                Txfiled_Num_Employee.setDisable(true);
                 Btn_Save_Employee.setDisable(false);
                 Btn_Delete_Employee.setDisable(false);
-                 Btn_Cancel_Employee.setDisable(false);
-                
-                
-                
-               }}} 
+                Btn_Cancel_Employee.setDisable(false);
 
-        
-   }
-   
+            } else {
 
-    
-        
-    
+                Statement st2 = connection.createStatement();
+                st2.executeQuery("SELECT * FROM employee ORDER BY EMPLOYEE_ID DESC LIMIT 1");
+                ResultSet rs2 = st2.getResultSet();
+                //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
+                if (rs2.first()) {
 
-  
-    @FXML
-    private void Btn_Edit_MangeCurrentMO(ActionEvent event) {
+                    System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                    //System.out.println();
+
+                    count = 1;
+                    number = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
+                    number++;
+                    System.out.println(number);
+                    Txfiled_Num_Employee.setText(String.valueOf(number));
+                    Txfiled_Num_Employee.setDisable(true);
+                    Btn_Save_Employee.setDisable(false);
+                    Btn_Delete_Employee.setDisable(false);
+                    Btn_Cancel_Employee.setDisable(false);
+
+                }
+            }
+        }
+
     }
-
-  
-
-    
-
-   
-
-   
 
     @FXML
     private void M_Txfiled_Name_SP(ActionEvent event) {
     }
+
     @FXML
     void M_Btn_Search_SP(ActionEvent event) throws SQLException {
-            
-          Connection connection = connectionClass.getConnection();   
+
+        Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM `spare_parts`  WHERE SP_NBER = " +  Txfiled_SPNum_SP.getText() );
+        st.executeQuery("SELECT * FROM `spare_parts`  WHERE SP_NBER = " + Txfiled_SPNum_SP.getText());
         ResultSet rs = st.getResultSet();
         if (rs.first()) {
 
-            System.out.println( Txfiled_SPNum_SP.getText());
+            System.out.println(Txfiled_SPNum_SP.getText());
 
             System.out.println("THIS NU NUMBER IN DB== " + rs.getString("SP_NBER"));
-            System.out.println("THIS NU NUMBER IN FILED== " +  Txfiled_SPNum_SP.getText());
+            System.out.println("THIS NU NUMBER IN FILED== " + Txfiled_SPNum_SP.getText());
 
             if (rs.getString("SP_NBER").equals(Txfiled_SPNum_SP.getText())) {
 
-            
                 count = 2;
-                
-                
-                 Txfiled_Name_SP.setText(rs.getString("SP_NAME"));
+
+                Txfiled_Name_SP.setText(rs.getString("SP_NAME"));
                 Txfiled_Price_SP.setText(rs.getString("PRICE"));
                 Txfiled_Quantity_SP.setText(rs.getString("SP_QUANTITY"));
-                 Txfiled_Discription_SP.setText(rs.getString("DESCRIPTION"));
-                
-                   Txfiled_SPNum_SP.setDisable(true);
-                    Btn_Save_SP.setDisable(false);
+                Txfiled_Discription_SP.setText(rs.getString("DESCRIPTION"));
+
+                Txfiled_SPNum_SP.setDisable(true);
+                Btn_Save_SP.setDisable(false);
                 Btn_Delete_SP.setDisable(false);
-                 Btn_Cancle_SP.setDisable(false);
-                
-               
-                
-        }}
-        
-        else{  
-            
-               Statement st2 = connection.createStatement();
+                Btn_Cancle_SP.setDisable(false);
+
+            }
+        } else {
+
+            Statement st2 = connection.createStatement();
             st2.executeQuery("SELECT * FROM spare_parts ORDER BY SP_NBER DESC LIMIT 1");
             ResultSet rs2 = st2.getResultSet();
             //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
             if (rs2.first()) {
-                
+
                 System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                 //System.out.println();
-                
+
                 count = 1;
                 number = Integer.parseInt(rs2.getString("SP_NBER"));
-                number ++;
+                number++;
                 System.out.println(number);
-                 Txfiled_SPNum_SP.setText(String.valueOf(number));
-                 Txfiled_SPNum_SP.setDisable(true);
-                 Btn_Save_SP.setDisable(false);
+                Txfiled_SPNum_SP.setText(String.valueOf(number));
+                Txfiled_SPNum_SP.setDisable(true);
+                Btn_Save_SP.setDisable(false);
                 Btn_Delete_SP.setDisable(false);
-                 Btn_Cancle_SP.setDisable(false);
-                
-                
-                
-               }}} 
+                Btn_Cancle_SP.setDisable(false);
 
+            }
+        }
+    }
 
     @FXML
     private void M_Btn_Cancle_SP(ActionEvent event) {
-          Txfiled_SPNum_SP.setDisable(false);
-         Txfiled_Name_SP.clear();
-         Txfiled_Price_SP.clear();
-         Txfiled_Quantity_SP.clear();
-          Txfiled_Discription_SP.clear();
+        Txfiled_SPNum_SP.setDisable(false);
+        Txfiled_Name_SP.clear();
+        Txfiled_Price_SP.clear();
+        Txfiled_Quantity_SP.clear();
+        Txfiled_Discription_SP.clear();
     }
 
     @FXML
     private void M_Btn_Delete_SP(ActionEvent event) throws SQLException {
-          String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " +   Txfiled_SPNum_SP.getText();
+        String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-       
-          Txfiled_SPNum_SP.setDisable(false);
-         Txfiled_Name_SP.clear();
-         Txfiled_Price_SP.clear();
-         Txfiled_Quantity_SP.clear();
-          Txfiled_Discription_SP.clear();
-          try {
-             statement1.executeUpdate(sql1);
-            
-             {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Deleted Successfully");
-            alert.showAndWait();
-            return;
-             }} catch (SQLException e) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        Txfiled_SPNum_SP.setDisable(false);
+        Txfiled_Name_SP.clear();
+        Txfiled_Price_SP.clear();
+        Txfiled_Quantity_SP.clear();
+        Txfiled_Discription_SP.clear();
+        try {
+            statement1.executeUpdate(sql1);
+
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            }
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`require`, CONSTRAINT `require_ibfk_2` FOREIGN KEY (`SP_NBER`) REFERENCES `spare_parts` (`SP_NBER`)) or Cannot delete or update a parent row: a foreign key constraint fails (`mo_db`.`attach`, CONSTRAINT `attach_ibfk_1` FOREIGN KEY (`SP_NBER`) REFERENCES `spare_parts` (`SP_NBER`))");
             alert.showAndWait();
             return;
         }
-      
-        
+
     }
 
     @FXML
     private void M_Btn_Save_SP(ActionEvent event) throws SQLException {
-         if ( Txfiled_SPNum_SP.getText().isEmpty() || Txfiled_Name_SP.getText().isEmpty() || Txfiled_Price_SP.getText().isEmpty() || 
-                 Txfiled_Quantity_SP.getText().isEmpty() ||  Txfiled_Discription_SP.getText().isEmpty()  ) {
+        if (Txfiled_SPNum_SP.getText().isEmpty() || Txfiled_Name_SP.getText().isEmpty() || Txfiled_Price_SP.getText().isEmpty()
+                || Txfiled_Quantity_SP.getText().isEmpty() || Txfiled_Discription_SP.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Pleas enter the value");
@@ -1128,196 +1061,165 @@ i=1000;
             return;
 
         }
-         
-        
-      if (count == 1) {
+
+        if (count == 1) {
             System.out.println("Equal  insert");
-             String sqll= "INSERT INTO spare_parts (SP_NBER, SP_NAME, PRICE,SP_QUANTITY ,DESCRIPTION) VALUES ("+number+ "," + "'" +  Txfiled_Name_SP.getText() + "'" + ","+"'" +   Txfiled_Price_SP.getText()+ 
-                     "'" + ","+"'" +  Txfiled_Quantity_SP.getText()+"'"+","+"'" + Txfiled_Discription_SP.getText()+ "')"; 
-          System.out.println(sqll);
-        java.sql.Statement statement1 = connection.prepareStatement(sqll);
- 
- 
-   statement1.executeUpdate(sqll);
+            String sqll = "INSERT INTO spare_parts (SP_NBER, SP_NAME, PRICE,SP_QUANTITY ,DESCRIPTION) VALUES (" + number + "," + "'" + Txfiled_Name_SP.getText() + "'" + "," + "'" + Txfiled_Price_SP.getText()
+                    + "'" + "," + "'" + Txfiled_Quantity_SP.getText() + "'" + "," + "'" + Txfiled_Discription_SP.getText() + "')";
+            System.out.println(sqll);
+            java.sql.Statement statement1 = connection.prepareStatement(sqll);
 
-         
-      }
+            statement1.executeUpdate(sqll);
 
-    else if (count == 2){
-         System.out.println("Equal  update");
+        } else if (count == 2) {
+            System.out.println("Equal  update");
             //System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `spare_parts` SET  SP_NAME='" +  Txfiled_Name_SP.getText() + "',PRICE='" + Txfiled_Price_SP.getText()  +"',SP_QUANTITY='"+ Txfiled_Quantity_SP.getText() +"',DESCRIPTION='"+Txfiled_Discription_SP.getText()
-                    +  " 'WHERE SP_NBER=' " + Txfiled_SPNum_SP.getText() + "'";
-                        
-            
-                   
+            String sql1 = "UPDATE  `spare_parts` SET  SP_NAME='" + Txfiled_Name_SP.getText() + "',PRICE='" + Txfiled_Price_SP.getText() + "',SP_QUANTITY='" + Txfiled_Quantity_SP.getText() + "',DESCRIPTION='" + Txfiled_Discription_SP.getText()
+                    + " 'WHERE SP_NBER=' " + Txfiled_SPNum_SP.getText() + "'";
+
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-    }
-     // count = 2;
-    
-    } 
-     @FXML
-   private void M_Btn_Save_Supplier(ActionEvent event) throws SQLException {
-         if ( Txfiled_Num_Supplier.getText().isEmpty() || Txfiled_MNum_Supplier.getText().isEmpty() || Txfiled_Email_Supplier.getText().isEmpty() || 
-                 Txfiled_Name_Supplier.getText().isEmpty() ||  Txfiled_Address_Supplier.getText().isEmpty()  ) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Pleas enter the value");
-            alert.showAndWait();
-            return;
-
         }
-         
-        
-      if (count == 1) {
-            System.out.println("Equal  insert");
-             String sqll= "INSERT INTO supplier (SUPPLIER_NBER, SUP_MOBILE_NBER, SUP_EMAIL,SUP_NAME ,SUP_ADDRESS) VALUES ("+number +","+"'" +   Txfiled_MNum_Supplier.getText() + "'" + ","+"'" +    Txfiled_Email_Supplier.getText()+ 
-                     "'" + ","+"'" +  Txfiled_Name_Supplier.getText()+"'"+","+"'" +Txfiled_Address_Supplier.getText()+ "')"; 
-          System.out.println(sqll);
-        java.sql.Statement statement1 = connection.prepareStatement(sqll);
- 
- 
-   statement1.executeUpdate(sqll);
+        // count = 2;
 
-         
-      }
-
-    else if (count == 2){
-         System.out.println("Equal  update");
-            //System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `supplier` SET  SUP_MOBILE_NBER='" + Txfiled_MNum_Supplier.getText() + "',SUP_EMAIL='" + Txfiled_Email_Supplier.getText()  +"',SUP_NAME='"+ Txfiled_Name_Supplier.getText() +"',SUP_ADDRESS='"+Txfiled_Address_Supplier.getText()
-                    +  "' WHERE SUPPLIER_NBER= '" + Txfiled_Num_Supplier.getText() + "'";
-                   
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(sql1);
     }
-      count = 2;
-    
-    }
-            
-            
-
-    
 
     @FXML
-   private void M_Btn_Search_Supplier(ActionEvent event) throws SQLException, ParseException {
-       
-            
-          Connection connection = connectionClass.getConnection();   
+    private void M_Btn_Save_Supplier(ActionEvent event) throws SQLException {
+        if (Txfiled_Num_Supplier.getText().isEmpty() || Txfiled_MNum_Supplier.getText().isEmpty() || Txfiled_Email_Supplier.getText().isEmpty()
+                || Txfiled_Name_Supplier.getText().isEmpty() || Txfiled_Address_Supplier.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Pleas enter the value");
+            alert.showAndWait();
+            return;
+
+        }
+
+        if (count == 1) {
+            System.out.println("Equal  insert");
+            String sqll = "INSERT INTO supplier (SUPPLIER_NBER, SUP_MOBILE_NBER, SUP_EMAIL,SUP_NAME ,SUP_ADDRESS) VALUES (" + number + "," + "'" + Txfiled_MNum_Supplier.getText() + "'" + "," + "'" + Txfiled_Email_Supplier.getText()
+                    + "'" + "," + "'" + Txfiled_Name_Supplier.getText() + "'" + "," + "'" + Txfiled_Address_Supplier.getText() + "')";
+            System.out.println(sqll);
+            java.sql.Statement statement1 = connection.prepareStatement(sqll);
+
+            statement1.executeUpdate(sqll);
+
+        } else if (count == 2) {
+            System.out.println("Equal  update");
+            //System.out.println(Selct_MoStatus_AddMO.getValue());
+            String sql1 = "UPDATE  `supplier` SET  SUP_MOBILE_NBER='" + Txfiled_MNum_Supplier.getText() + "',SUP_EMAIL='" + Txfiled_Email_Supplier.getText() + "',SUP_NAME='" + Txfiled_Name_Supplier.getText() + "',SUP_ADDRESS='" + Txfiled_Address_Supplier.getText()
+                    + "' WHERE SUPPLIER_NBER= '" + Txfiled_Num_Supplier.getText() + "'";
+
+            System.out.println(sql1);
+            java.sql.Statement statement1 = connection.createStatement();
+            statement1.executeUpdate(sql1);
+        }
+        count = 2;
+
+    }
+
+    @FXML
+    private void M_Btn_Search_Supplier(ActionEvent event) throws SQLException, ParseException {
+
+        Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM `supplier`  WHERE SUPPLIER_NBER = " +  Txfiled_Num_Supplier.getText() );
+        st.executeQuery("SELECT * FROM `supplier`  WHERE SUPPLIER_NBER = " + Txfiled_Num_Supplier.getText());
         ResultSet rs = st.getResultSet();
         if (rs.first()) {
 
-            System.out.println( Txfiled_Num_Supplier.getText());
+            System.out.println(Txfiled_Num_Supplier.getText());
 
             System.out.println("THIS NU NUMBER IN DB== " + rs.getString("SUPPLIER_NBER"));
-            System.out.println("THIS NU NUMBER IN FILED== " +  Txfiled_Num_Supplier.getText());
+            System.out.println("THIS NU NUMBER IN FILED== " + Txfiled_Num_Supplier.getText());
 
-            if (rs.getString("SUPPLIER_NBER").equals( Txfiled_Num_Supplier.getText())) {
+            if (rs.getString("SUPPLIER_NBER").equals(Txfiled_Num_Supplier.getText())) {
 
-            
-                
                 count = 2;
-                
-                
+
                 Txfiled_MNum_Supplier.setText(rs.getString("SUP_MOBILE_NBER"));
                 Txfiled_Email_Supplier.setText(rs.getString("SUP_EMAIL"));
                 Txfiled_Name_Supplier.setText(rs.getString("SUP_NAME"));
                 Txfiled_Address_Supplier.setText(rs.getString("SUP_ADDRESS"));
-                
-                    Txfiled_Num_Supplier.setDisable(true);
-                    Btn_Save_Supplier.setDisable(false);
+
+                Txfiled_Num_Supplier.setDisable(true);
+                Btn_Save_Supplier.setDisable(false);
                 Btn_Delete_Supplier.setDisable(false);
-                 Btn_Cancle_Supplier.setDisable(false);
-                
-               
-                
-        }}
-        
-        else{  
+                Btn_Cancle_Supplier.setDisable(false);
+
+            }
+        } else {
             Statement st2 = connection.createStatement();
             st2.executeQuery("SELECT * FROM supplier ORDER BY SUPPLIER_NBER DESC LIMIT 1");
             ResultSet rs2 = st2.getResultSet();
             //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
             if (rs2.first()) {
-                
+
                 System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                 //System.out.println();
-                
+
                 count = 1;
                 number = Integer.parseInt(rs2.getString("SUPPLIER_NBER"));
                 number++;
                 System.out.println(number);
-                 Txfiled_Num_Supplier.setText(String.valueOf(number));
-                 Txfiled_Num_Supplier.setDisable(true);
-                  Btn_Save_Supplier.setDisable(false);
+                Txfiled_Num_Supplier.setText(String.valueOf(number));
+                Txfiled_Num_Supplier.setDisable(true);
+                Btn_Save_Supplier.setDisable(false);
                 Btn_Delete_Supplier.setDisable(false);
-                 Btn_Cancle_Supplier.setDisable(false);
-                
-                
-               }}} 
+                Btn_Cancle_Supplier.setDisable(false);
 
-        
-    
-    
+            }
+        }
+    }
+
     @FXML
-   private void M_Btn_Delete_Supplier(ActionEvent event) throws SQLException {
-        String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " +   Txfiled_Num_Supplier.getText();
+    private void M_Btn_Delete_Supplier(ActionEvent event) throws SQLException {
+        String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
         System.out.println(sql1);
         java.sql.Statement statement1 = connection.createStatement();
-       
-             clearSUP ();
-              try {
-             statement1.executeUpdate(sql1);
-            
-             {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Deleted Successfully");
-            alert.showAndWait();
-            return;
-             }} catch (SQLException e) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        clearSUP();
+        try {
+            statement1.executeUpdate(sql1);
+
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            }
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;
         }
-      
-    }
-     @FXML
-   private void M_Btn_Cancle_Supplier(ActionEvent event) {
-       
-                clearSUP ();
-    }
-   public void clearSUP (){
-       Txfiled_Num_Supplier.setDisable(false);
-       Txfiled_Num_Supplier.clear();
-        Txfiled_MNum_Supplier.clear();
-                Txfiled_Email_Supplier.clear();
-                Txfiled_Name_Supplier.clear();
-                Txfiled_Address_Supplier.clear();
-                
-                
-       
-       
-   }
-    
-    
-    
 
-    
+    }
+
+    @FXML
+    private void M_Btn_Cancle_Supplier(ActionEvent event) {
+
+        clearSUP();
+    }
+
+    public void clearSUP() {
+        Txfiled_Num_Supplier.setDisable(false);
+        Txfiled_Num_Supplier.clear();
+        Txfiled_MNum_Supplier.clear();
+        Txfiled_Email_Supplier.clear();
+        Txfiled_Name_Supplier.clear();
+        Txfiled_Address_Supplier.clear();
+
+    }
+
     @FXML
     private void prbuttonReports(ActionEvent event) {
     }
 
- 
-
-    
     @FXML
     public void Mangment_MO_tab_selected(Event event) {
 
@@ -1327,7 +1229,7 @@ i=1000;
 
     @FXML
     public void Mangment_Customer_tab_selected(Event event) {
-       MainLable.setText("ادارة العملاء");
+        MainLable.setText("ادارة العملاء");
 
     }
 
@@ -1343,7 +1245,7 @@ i=1000;
 
     @FXML
     public void RequstSpearPart_tab_selected(Event event) {
-       MainLable.setText("طلب قطع غيار");
+        MainLable.setText("طلب قطع غيار");
     }
 
     @FXML
@@ -1355,17 +1257,17 @@ i=1000;
     public void Mangment_Reports_tab_selected(Event event) {
         MainLable.setText("ادارة التقارير");
     }
-     @FXML
-    private void Main_Tab(Event event) {
-         MainLable.setText(" ");
-    }
 
     @FXML
+    private void Main_Tab(Event event) {
+        MainLable.setText(" ");
+    }
+
     private void Mangment_Tools_tab_selected(Event event) {
-                 MainLable.setText("الأدوات");
+        MainLable.setText("الأدوات");
 
     }
-     ObservableList<AddSP> SPSelected2, AllSP2;
+    ObservableList<AddSP> SPSelected2, AllSP2;
 
     @FXML
     private void M_Btn_RemoveSP_ReqSP(ActionEvent event) throws SQLException {
@@ -1450,8 +1352,7 @@ i=1000;
 
     @FXML
     private void M_Btn_Delete_ReqSP(ActionEvent event) throws SQLException {
-        
-        
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Look, a Confirmation Dialog");
@@ -1694,7 +1595,7 @@ i=1000;
 
     @FXML
     private void M_Txfiled_SearchSP_ReqSP(KeyEvent event) throws SQLException {
-         Choose = 2;
+        Choose = 2;
         System.out.println(event.getEventType().toString());
         System.out.println(event.getText());
         ListOFSP.clear();
@@ -1711,7 +1612,6 @@ i=1000;
 
         if (id2.isEmpty()) {
             loadSpecifecSP();
-            
 
         } else {
             String sql1 = "SELECT * FROM spare_parts WHERE SP_NAME = '" + id2 + "'";
@@ -1720,6 +1620,29 @@ i=1000;
             Search(trysql, Choose);
 
         }
+    }
+ String id3 = "";
+    @FXML
+    private void M_Txfiled_Search_MangeCurrentMO(KeyEvent event) throws SQLException {
+          Choose = 3;
+        System.out.println(event.getEventType().toString());
+        System.out.println(event.getText());
+
+        id3 += event.getText();
+        if (event.getText().equals("")) {
+            id3 = id3.substring(0, id3.length() - 1);
+
+        }
+
+        System.out.println("__________  " + id3);
+
+        String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + id3 + "'";
+        String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE `MO_NBER` LIKE '" + id3 + "%' AND STATE ='approve' OR STATE ='under maintenance' OR `CUS_NAME` LIKE '" + id3 + "%' AND STATE ='approve' OR STATE ='under maintenance';";
+        System.out.println(trysql);
+        Search(trysql, Choose);
+        
+
+
     }
 
     public static class AddSP {
@@ -1804,9 +1727,9 @@ i=1000;
 
         openEdit(Table_CurrentMO_MngMO);
     }
-    int Choose=0;
-    
-        public void Search(String Search, int Choose) {
+    int Choose = 0;
+
+    public void Search(String Search, int Choose) throws SQLException {
         if (Choose == 2) {
             ResultSet rs = connectionClass.execQuery(Search);
             try {
@@ -1818,22 +1741,23 @@ i=1000;
 
                     int SP_num = Integer.parseInt(mname);
                     int SP_Quant = Integer.parseInt(rs.getString("SP_QUANTITY"));
-                    
-                    ListOFSP.add(new AddSP(SP_num, rs.getString("SP_Name"), SP_Quant)); }
-                    
-                       for (int i = 0; i < ListOFSP.size(); i++) {
-                for (int j = 0; j < ListOFSelectedSP.size(); j++) {
-                    if (ListOFSP.get(i).getSP_Number().equals(ListOFSelectedSP.get(j).getSP_Number())) {
-                        System.out.println(ListOFSP.get(i).getSP_Number() + "-----------" + ListOFSelectedSP.get(j).getSP_Number());
-                        System.out.println("i==" + i + "j==" + j);
-                        ListOFSP.remove(i);
-                        System.out.println("Size==" + ListOFSP.size());
-                        System.out.println("NOOOOT NULL OOOOOOOOOOOOOOOOOO");
+
+                    ListOFSP.add(new AddSP(SP_num, rs.getString("SP_Name"), SP_Quant));
+                }
+
+                for (int i = 0; i < ListOFSP.size(); i++) {
+                    for (int j = 0; j < ListOFSelectedSP.size(); j++) {
+                        if (ListOFSP.get(i).getSP_Number().equals(ListOFSelectedSP.get(j).getSP_Number())) {
+                            System.out.println(ListOFSP.get(i).getSP_Number() + "-----------" + ListOFSelectedSP.get(j).getSP_Number());
+                            System.out.println("i==" + i + "j==" + j);
+                            ListOFSP.remove(i);
+                            System.out.println("Size==" + ListOFSP.size());
+                            System.out.println("NOOOOT NULL OOOOOOOOOOOOOOOOOO");
+
+                        }
 
                     }
-                 
-
-                }}
+                }
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -1848,7 +1772,6 @@ i=1000;
                 while (rs.next()) {
 
                     //Txfiled_CusName_AddMO.setText(rs.getString("CUS_NAME"));
-
                 }
 
             } catch (SQLException ex) {
@@ -1856,54 +1779,35 @@ i=1000;
 
             }
 
-        }
+        } else if (Choose == 3) {
 
-    }
+            ResultSet rs = connectionClass.execQuery(Search);
+            CurrnetList.clear();
+            try {
+                while (rs.next()) {
+                    
 
+                    String MONber = rs.getString("MO_NBER");
+                    String mobile = rs.getString("CUS_MOBILE_NBER");
+                    String priceSP = rs.getString("SP_COST");
+                    String priceMO = rs.getString("MO_COST");
+                    int MO_num = Integer.parseInt(MONber);
+                    int CusMobile = Integer.parseInt(mobile);
+                    double TotalCost = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
+                    CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
 
-    @FXML
-    private void M_Txfiled_Search_MangeCurrentMO(ActionEvent event) {
-        Table_CurrentMO_MngMO.getItems().get(0).getCus_Name();
-        //System.out.println("First  "+ Table_CurrentMO_MngMO.getItems().get(0).getCus_Name());
-        for (int i = 0; i < Table_CurrentMO_MngMO.getItems().size(); i++) {
+                }
 
-            if (Table_CurrentMO_MngMO.getItems().get(i).getCus_Name().equalsIgnoreCase(Txfiled_Search_MangeCurrentMO.getText())) {
-                System.out.println("Seconde  " + Table_CurrentMO_MngMO.getItems().get(i).getCus_Name());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
 
-                CurrnetList.clear();
-                CurrnetList.add(new MO(Table_CurrentMO_MngMO.getItems().get(i).getMO_Number(), Table_CurrentMO_MngMO.getItems().get(i).getCus_Name(), Table_CurrentMO_MngMO.getItems().get(i).getCus_Mobile(),
-                        Table_CurrentMO_MngMO.getItems().get(i).getMO_technician(), Table_CurrentMO_MngMO.getItems().get(i).getMO_EndDate(),
-                        Table_CurrentMO_MngMO.getItems().get(i).getMO_TotalCost(), Table_CurrentMO_MngMO.getItems().get(i).getMO_Status()));
-                Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
-
-                //CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-            } else {
-                CurrnetList.clear();
-                PendingList.clear();
-                FinshedList.clear();
-                PriveousList.clear();
-                loadAllMO();
             }
+            Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
 
         }
+
     }
-
-
-    
-    
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 package sample;
@@ -2128,4 +2032,4 @@ public class Controller implements Initializable{
 
  }
 }
-*/
+ */

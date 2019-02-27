@@ -399,7 +399,7 @@ public class Controller implements Initializable{
                 double TotalCost = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
 
                 if (rs.getString("STATE").equalsIgnoreCase("cannot be done") || rs.getString("STATE").equalsIgnoreCase("other defects has been detected")
-                        || rs.getString("STATE").equalsIgnoreCase("disapprove") || rs.getString("STATE").equalsIgnoreCase("created")) {
+                        || rs.getString("STATE").equalsIgnoreCase("created")) {
                     //Pending
 
                     PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
@@ -408,11 +408,11 @@ public class Controller implements Initializable{
                     //Current
                     CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
 
-                } else if (rs.getString("STATE").equalsIgnoreCase("repaired")) {
+                } else if (rs.getString("STATE").equalsIgnoreCase("repaired"))  {
                     //Finshed
                     FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
 
-                } else if (rs.getString("STATE").equalsIgnoreCase("paid")) {
+                } else if (rs.getString("STATE").equalsIgnoreCase("paid") || rs.getString("STATE").equalsIgnoreCase("disapprove")) {
                     //Priveous
                     PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
 
